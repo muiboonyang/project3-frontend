@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+  font-family: "Oxygen", sans-serif;
+}
+
+body {
+  margin: 0 50px;
+  background-color: whitesmoke;
+}
+
+/* Formatting for carousel */
+
+.carousel-header {
+  text-align: center;
+}
+
+.carousel {
+  text-align: center;
+  position: relative;
+  width: 300px;
+  margin: auto;
+}
+
+.carousel-title {
+  background: rgba(28, 29, 28, 0.5);
+  text-decoration: none;
+  color: white;
+}
+
+.carousel-title a {
+  text-decoration: none;
+  color: white;
+}
+
+.carousel-title a:hover {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+/* Formatting for results */
+
+.spinner {
+  margin: 3rem auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-body,
+.footer {
+  text-align: center;
+}
+
+.summary {
+  text-align: justify;
+  font-size: 13px;
+}
+
+/* Formatting for contact page */
+
+.contact {
+  margin: auto;
+}
+
+/* Formatting for login page */
+
+.login {
+  margin: auto;
+  width: 500px;
+}
