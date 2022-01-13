@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./TaskCard.module.css";
+// import styles from "./TaskCard.module.css";
 
 const TaskCard = (props) => {
   return (
@@ -7,6 +7,8 @@ const TaskCard = (props) => {
       Name: {props.tasks.name}
       <br />
       Email: {props.tasks.email}
+      <br />
+      Comments: {props.tasks.comments}
     </div>
   );
 };

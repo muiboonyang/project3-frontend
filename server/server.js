@@ -3,10 +3,13 @@
 // =======================================
 
 // Dependencies
-const mongoose = require("mongoose");
-// const db = mongoose.connection;
+const connectDB = require("./models/db");
 const express = require("express");
 const cors = require("cors");
+
+// Config
+const mongoURI = "mongodb://localhost:27017/tasks";
+connectDB(mongoURI);
 
 const app = express();
 const methodOverride = require("method-override");
@@ -20,21 +23,9 @@ app.use(methodOverride("_method"));
 //              DATABASE
 // =======================================
 
-// Config
-const mongoURI = "mongodb://localhost:27017/tasks";
-
 // Models
 const TaskModel = require("./models/tasks.js");
 const taskSeed = require("./models/seed.js");
-
-// Connect to Mongo
-mongoose.connect(
-  mongoURI,
-  { useNewUrlParser: true, useUnifiedTopology: true },
-  () => {
-    console.log("The connection with mongod is established");
-  }
-);
 
 // =======================================
 //              ROUTES
