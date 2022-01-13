@@ -11,14 +11,6 @@ const NavBar = () => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">
-            {/* <img
-              alt=""
-              src="https://i.imgur.com/29phue5.png"
-              width="30"
-              height="30"
-              className="d-inline-block"
-            />{" "}
-            &nbsp;{" "} */}
             <b>
               <i className="fa fa-fw fa-tasks"></i> Task App
             </b>
@@ -30,10 +22,18 @@ const NavBar = () => {
                 id="dropdown-button-dark-example1"
                 variant="dark"
               >
-                <i className="fa fa-fw fa-search"></i> Search
+                <i className="fa fa-fw fa-search"></i> Search Category
               </Dropdown.Toggle>
 
               <Dropdown.Menu variant="dark">
+                <Dropdown.Item
+                  className={styles.dropdown}
+                  href="/search/all"
+                  value="all"
+                >
+                  <i className="fa fa-fw fa-thumb-tack"></i> All tasks
+                </Dropdown.Item>
+
                 <Dropdown.Item
                   className={styles.dropdown}
                   href="/search/plumbing"
@@ -58,11 +58,7 @@ const NavBar = () => {
               </Dropdown.Menu>
             </Dropdown>
 
-            {/* <a href="/search">
-              <i className="fa fa-fw fa-search"></i> Search
-            </a> */}
-
-            <a href="/requests">
+            <a href="/newrequest">
               <i className="fa fa-fw fa-envelope"></i> New Request
             </a>
           </Nav>
