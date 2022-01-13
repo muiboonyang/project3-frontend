@@ -7,6 +7,8 @@ const TaskCard = (props) => {
       Name: {props.tasks.name}
       <br />
       Email: {props.tasks.email}
+      <br />
+      Comments: {props.tasks.comments}
     </div>
   );
 };
