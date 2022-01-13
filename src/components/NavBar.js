@@ -63,11 +63,13 @@ const NavBar = () => {
             </a> */}
 
             <a href="/requests">
-              <i className="fa fa-fw fa-envelope"></i> Requests
+              <i className="fa fa-fw fa-envelope"></i> New Request
             </a>
+          </Nav>
 
+          <Nav placement="end">
             <a href="/tasks">
-              <i className="fa fa-fw fa-list"></i> Tasks
+              <i className="fa fa-fw fa-list"></i> My Tasks
             </a>
           </Nav>
 

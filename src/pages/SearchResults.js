@@ -28,10 +28,10 @@ const SearchResults = () => {
   // Fetch data from API (by specific type)
   //================
 
-  const url2 = `http://localhost:5001/tasks/${params.type}`;
+  const url = `http://localhost:5001/tasks/${params.type}`;
 
   const fetchTasks = async () => {
-    const res = await fetch(url2, {});
+    const res = await fetch(url, {});
     const rawData = await res.json();
 
     setTasks(rawData);
@@ -49,10 +49,10 @@ const SearchResults = () => {
     <>
       {tasks.map((tasks) => {
         return (
-          <>
-            <TaskCard tasks={tasks} key={uuidv4()} />
+          <div key={uuidv4()}>
+            <TaskCard tasks={tasks} />
             <br />
-          </>
+          </div>
         );
       })}
     </>
