@@ -3,7 +3,6 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Container from "react-bootstrap/Container";
 import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import styles from "./NavBar.module.css";
 
 const NavBar = () => {
@@ -12,37 +11,65 @@ const NavBar = () => {
       <Navbar bg="dark" variant="dark">
         <Container>
           <Navbar.Brand href="/">
-            <img
+            {/* <img
               alt=""
               src="https://i.imgur.com/29phue5.png"
               width="30"
               height="30"
               className="d-inline-block"
             />{" "}
-            &nbsp; <b>Task App</b>
+            &nbsp;{" "} */}
+            <b>
+              <i className="fa fa-fw fa-tasks"></i> Task App
+            </b>
           </Navbar.Brand>
 
           <Nav className="me-auto">
-            <DropdownButton
-              id="dropdown-basic-primary"
-              title="Search"
-              variant="secondary"
-            >
-              <Dropdown.Item href="#/action-1">Category1</Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Category2</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Category3</Dropdown.Item>
-            </DropdownButton>
+            <Dropdown>
+              <Dropdown.Toggle
+                id="dropdown-button-dark-example1"
+                variant="dark"
+              >
+                <i className="fa fa-fw fa-search"></i> Search
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu variant="dark">
+                <Dropdown.Item
+                  className={styles.dropdown}
+                  href="/search/plumbing"
+                  value="plumbing"
+                >
+                  <i className="fa fa-fw fa-tint"></i> Plumbing
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className={styles.dropdown}
+                  href="/search/cleaning"
+                  value="cleaning"
+                >
+                  <i className="fa fa-fw fa-shower"></i> Cleaning
+                </Dropdown.Item>
+                <Dropdown.Item
+                  className={styles.dropdown}
+                  href="/search/grocery"
+                  value="grocery"
+                >
+                  <i className="fa fa-fw fa-shopping-cart"></i> Grocery
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
 
             {/* <a href="/search">
               <i className="fa fa-fw fa-search"></i> Search
             </a> */}
 
             <a href="/requests">
-              <i className="fa fa-fw fa-envelope"></i> Requests
+              <i className="fa fa-fw fa-envelope"></i> New Request
             </a>
+          </Nav>
 
+          <Nav placement="end">
             <a href="/tasks">
-              <i className="fa fa-fw fa-briefcase"></i> Tasks
+              <i className="fa fa-fw fa-list"></i> My Tasks
             </a>
           </Nav>
 
