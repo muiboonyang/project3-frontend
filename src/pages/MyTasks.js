@@ -3,10 +3,11 @@ import React from "react";
 const Tasks = () => {
   return (
     <div>
-      My Tasks
-      <form action="/product">
-        <input type="submit" value="Completed" />
-      </form>
+      My Requests (Not Accepted) <br />
+      My Requests (In Progress) <br />
+      My Requests (Completed) <br /> <br />
+      My Tasks (In Progress) <br />
+      My Tasks (Completed)
     </div>
   );
 };
