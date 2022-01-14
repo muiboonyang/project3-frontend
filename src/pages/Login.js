@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import styles from "./Login.module.css";
 
-const Login = () => {
+const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -96,7 +96,12 @@ const Login = () => {
         </Row>
 
         <div className="d-grid gap-2">
-          <Button variant="dark" type="submit" size="lg">
+          <Button
+            variant="dark"
+            type="submit"
+            size="lg"
+            // onClick={props.handleLogin}
+          >
             Submit
           </Button>
         </div>

@@ -68,10 +68,13 @@ const NavBar = () => {
         </Nav>
 
         <Nav placement="end">
+          <a href="/">Current user: {loginContext.loginStatus}</a>
+        </Nav>
+
+        <Nav placement="end">
           <a href="/login">
             <i className="fa fa-fw fa-user"></i> Log In
           </a>
-          <p>{loginContext.loginStatus}</p>
         </Nav>
       </Navbar>
     </div>
