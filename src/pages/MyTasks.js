@@ -39,6 +39,7 @@ const Tasks = () => {
 
   return (
     <div>
+
       <h1>My Tasks</h1>
 
       <h3>In Progress</h3>
@@ -95,6 +96,7 @@ const Tasks = () => {
           ""
         );
       })}
+
     </div>
   );
 };

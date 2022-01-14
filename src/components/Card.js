@@ -46,6 +46,7 @@ const Card = (props) => {
           onClick={updateAcceptance}
         />
       )}
+
     </div>
   );
 };

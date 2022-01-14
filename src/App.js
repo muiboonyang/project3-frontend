@@ -9,6 +9,7 @@ import NewRequest from "./pages/NewRequest";
 import SearchResults from "./pages/SearchResults";
 import MyTasks from "./pages/MyTasks";
 import Login from "./pages/Login";
+import CreateAccount from "./pages/CreateAcount";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/search/:type" exact component={SearchResults} />
         <Route path="/mytasks" exact component={MyTasks} />
         <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={CreateAccount} />
       </Switch>
     </BrowserRouter>
   );
