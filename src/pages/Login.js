@@ -4,21 +4,33 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Login = () => {
+const Login = (props) => {
   return (
     <div className="login">
-      <Form>
-        <h3>Log In</h3>
-        <br />
+      <h3>Log In</h3>
+      <br />
 
+      <form
+        action="http://localhost:5001/sessions/new"
+        method="post"
+        className="form-submit"
+      >
         <Form.Group className="mb-3" controlId="formLoginUsername">
           <Form.Label>Username</Form.Label>
-          <Form.Control type="text" placeholder="Enter username" />
+          <Form.Control
+            type="text"
+            name="username"
+            placeholder="Enter username"
+          />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formLoginPassword">
           <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="Enter password" />
+          <Form.Control
+            type="password"
+            name="password"
+            placeholder="Enter password"
+          />
         </Form.Group>
 
         <Row className="mb-3">
@@ -42,10 +54,20 @@ const Login = () => {
         </Row>
 
         <div className="d-grid gap-2">
-          <Button variant="dark" type="submit" size="lg">
-            Log In
+          <Button
+            variant="dark"
+            type="submit"
+            size="lg"
+            // onClick={props.handleLogin}
+          >
+            Submit
           </Button>
-          <hr />
+        </div>
+      </form>
+
+      <Form>
+        <hr />
+        <div className="d-grid gap-2">
           <Button
             variant="outline-dark"
             type="submit"
