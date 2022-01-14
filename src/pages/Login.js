@@ -11,9 +11,9 @@ const Login = () => {
         <h3>Log In</h3>
         <br />
 
-        <Form.Group className="mb-3" controlId="formLoginEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" />
+        <Form.Group className="mb-3" controlId="formLoginUsername">
+          <Form.Label>Username</Form.Label>
+          <Form.Control type="text" placeholder="Enter username" />
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formLoginPassword">
@@ -46,8 +46,13 @@ const Login = () => {
             Log In
           </Button>
           <hr />
-          <Button variant="outline-dark" type="submit" size="lg">
-            Sign Up
+          <Button
+            variant="outline-dark"
+            type="submit"
+            size="lg"
+            href="/register"
+          >
+            Create Account
           </Button>
         </div>
       </Form>
