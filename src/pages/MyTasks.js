@@ -3,11 +3,10 @@ import React from "react";
 const Tasks = () => {
   return (
     <div>
-      Search;
+      My Tasks
       <form action="/product">
-        <input type="submit" value="HELP" />
+        <input type="submit" value="Completed" />
       </form>
-      ;
     </div>
   );
 };

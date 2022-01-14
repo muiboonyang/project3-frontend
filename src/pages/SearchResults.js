@@ -1,56 +1,37 @@
 import React, { useState, useEffect } from "react";
-import TaskCard from "../components/TaskCard";
+import Card from "../components/Card";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const SearchResults = () => {
-  const [tasks, setTasks] = useState([]);
+  const [requests, setRequests] = useState([]);
   const params = useParams();
-
-  //================
-  // Fetch data from API
-  //================
-
-  // const url = `http://localhost:5001/tasks`;
-
-  // const fetchTasks = async () => {
-  //   const res = await fetch(url, {
-  //     // Accept: "application/json",
-  //     // headers: { "Content-type": "text/html" },
-  //   });
-  //   const rawData = await res.json();
-
-  //   setTasks(rawData);
-  //   console.log(rawData);
-  // };
 
   //================
   // Fetch data from API (by specific type)
   //================
 
-  const url = `http://localhost:5001/tasks/${params.type}`;
+  const url = `http://localhost:5001/search/${params.type}`;
 
-  const fetchTasks = async () => {
+  const fetchRequests = async () => {
     const res = await fetch(url, {});
     const rawData = await res.json();
-
-    setTasks(rawData);
-    console.log(rawData);
+    setRequests(rawData);
   };
 
   //===========
 
   useEffect(() => {
     // fetchTasks();
-    fetchTasks();
+    fetchRequests();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>
-      {tasks.map((tasks) => {
+      {requests.map((requests) => {
         return (
           <div key={uuidv4()}>
-            <TaskCard tasks={tasks} />
+            <Card requests={requests} />
             <br />
           </div>
         );
