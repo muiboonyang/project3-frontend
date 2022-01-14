@@ -1,15 +1,11 @@
-<<<<<<< Updated upstream
-import React from "react";
 
-const SearchResults = () => {
-  return <div>Search</div>;
-=======
 import React, { useState, useEffect } from "react";
 import CardTask from "../components/CardTask";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 
 const SearchResults = () => {
+
   const [requests, setRequests] = useState([]);
   const params = useParams();
 
@@ -37,14 +33,15 @@ const SearchResults = () => {
       {requests.map((requests) => {
         return (
           <div key={uuidv4()}>
-            <CardTask requests={requests} />
+
+            <CardTask requests={requests} />           
+
             <br />
           </div>
         );
       })}
     </>
   );
->>>>>>> Stashed changes
 };
 
 export default SearchResults;
