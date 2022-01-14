@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./TaskCard.module.css";
+import styles from "./Card.module.css";
 
 const Card = (props) => {
   const [status, setStatus] = useState(false);
@@ -16,8 +16,9 @@ const Card = (props) => {
           ? JSON.stringify({ accepted: false, id: props.requests._id })
           : JSON.stringify({ accepted: true, id: props.requests._id }),
     });
-    const data = await res.json();
-    setStatus(data);
+    // const data = await res.json();
+    await res.json();
+    setStatus(true);
   };
 
   return (
