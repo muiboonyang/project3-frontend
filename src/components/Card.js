@@ -2,23 +2,25 @@ import React, { useState } from "react";
 import styles from "./Card.module.css";
 
 const Card = (props) => {
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(props.requests.accepted);
 
-  const putFunction = async () => {
+  const updateAcceptance = async () => {
     const res = await fetch("http://localhost:5001/tasks", {
       method: "POST",
-      mode: "cors",
+      // mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
-      body:
-        status === true
-          ? JSON.stringify({ accepted: false, id: props.requests._id })
-          : JSON.stringify({ accepted: true, id: props.requests._id }),
+      body: JSON.stringify({
+        id: props.requests._id,
+        accepted: !status,
+      }),
     });
-    // const data = await res.json();
-    await res.json();
-    setStatus(true);
+
+    const data = await res.json();
+    console.log(data);
+
+    setStatus(!status);
   };
 
   return (
@@ -35,12 +37,15 @@ const Card = (props) => {
       <p>Address: {props.requests.address}</p>
       <p>Date: {props.requests.date}</p>
       <p>Comments: {props.requests.comments}</p>
-
-      <input
-        type="submit"
-        value={status === true ? "HELPED" : "HELP"}
-        onClick={putFunction}
-      />
+      {props.requests.completed === true ? (
+        ""
+      ) : (
+        <input
+          type="submit"
+          value={status === true ? "HELPED" : "HELP"}
+          onClick={updateAcceptance}
+        />
+      )}
     </div>
   );
 };

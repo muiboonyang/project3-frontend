@@ -7,7 +7,7 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import NewRequest from "./pages/NewRequest";
 import SearchResults from "./pages/SearchResults";
-import Tasks from "./pages/MyTasks";
+import MyTasks from "./pages/MyTasks";
 import Login from "./pages/Login";
 
 const App = () => {
@@ -19,7 +19,7 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/newrequest" exact component={NewRequest} />
         <Route path="/search/:type" exact component={SearchResults} />
-        <Route path="/tasks" exact component={Tasks} />
+        <Route path="/mytasks" exact component={MyTasks} />
         <Route path="/login" exact component={Login} />
       </Switch>
     </BrowserRouter>
