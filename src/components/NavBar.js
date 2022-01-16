@@ -68,7 +68,7 @@ const NavBar = () => {
         </Nav>
 
         <Nav placement="end">
-          <a href="/">Current user: {loginContext.loginStatus}</a>
+          <a href="/tasks">Current user: {loginContext.loginStatus}</a>
         </Nav>
 
         <Nav placement="end">

@@ -39,12 +39,6 @@ const Login = (props) => {
     }
   };
 
-  //  <form
-  //    action="http://localhost:5001/sessions/new"
-  //    method="post"
-  //    className="form-submit"
-  //  >
-
   return (
     <div className="login">
       <h3>Log In</h3>

@@ -37,12 +37,6 @@ const CreateAccount = () => {
     }
   };
 
-  //   <form
-  //     action="http://localhost:5001/users/new"
-  //     method="post"
-  //     className="form-submit"
-  //   >;
-
   return (
     <div className="createAccount">
       <h3>Create Account</h3>
