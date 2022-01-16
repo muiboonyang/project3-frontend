@@ -1,30 +1,53 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
+// import styles from "./Home.module.css";
 
 const Home = () => {
   return (
     <div className="seedData">
       Home
+      <br />
+      - Different carousel of images for each category
+      <br />
+      <br /> <br />
       <form
-        action="http://localhost:5001/seed"
+        action="http://localhost:5001/seedtask"
         method="post"
         className="form-submit"
       >
-        <br />
         <Button variant="primary" type="submit">
-          Seed data
+          Seed Tasks
         </Button>
-        <br />
-        <br />
       </form>
+      <br />
       <form
-        action="http://localhost:5001/delete/all"
+        action="http://localhost:5001/delete/alltask"
         method="post"
         className="form-submit"
       >
-        <br />
         <Button variant="danger" type="submit">
-          DELETE ALL DATA
+          DELETE ALL TASKS
+        </Button>
+      </form>
+      <br />
+      <br />
+      <form
+        action="http://localhost:5001/seeduser"
+        method="post"
+        className="form-submit"
+      >
+        <Button variant="success" type="submit">
+          Seed Users
+        </Button>
+      </form>
+      <br />
+      <form
+        action="http://localhost:5001/delete/alluser"
+        method="post"
+        className="form-submit"
+      >
+        <Button variant="danger" type="submit">
+          DELETE ALL USERS
         </Button>
       </form>
     </div>

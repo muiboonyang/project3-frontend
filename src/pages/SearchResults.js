@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "../components/Card";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+// import styles from "./SearchResults.module.css";
 
 const SearchResults = () => {
   const [requests, setRequests] = useState([]);
