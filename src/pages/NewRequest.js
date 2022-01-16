@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
 const NewRequest = () => {
+  const [selectedFile, setSelectedFile] = useState(null);
+
+  const onFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const onFileUpload = async (e) => {
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+    console.log(formData);
+    await fetch("http://localhost:5001/requests", {
+      method: "POST",
+      body: formData,
+    });
+  };
+
   return (
     <div className="requests">
-      <form
+      <input type="file" onChange={onFileChange} />
+      <button onClick={onFileUpload}>Submit</button>
+
+      {/* <form
         action="http://localhost:5001/requests"
         method="post"
         className="form-submit"
@@ -51,8 +70,8 @@ const NewRequest = () => {
           <Form.Control name="address" placeholder="Enter address" required />
         </Form.Group>
 
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formGridZip">
+        <Row>
+          <Form.Group as={Col} className="mb-3" controlId="formGridZip">
             <Form.Label>Unit number</Form.Label>
             <Form.Control
               name="unit"
@@ -61,7 +80,7 @@ const NewRequest = () => {
             />
           </Form.Group>
 
-          <Form.Group as={Col} controlId="formGridZip">
+          <Form.Group as={Col} className="mb-3" controlId="formGridZip">
             <Form.Label>Zip code</Form.Label>
             <Form.Control
               name="zipcode"
@@ -71,8 +90,8 @@ const NewRequest = () => {
           </Form.Group>
         </Row>
 
-        <Row className="mb-3">
-          <Form.Group as={Col} controlId="formIssueType">
+        <Row>
+          <Form.Group as={Col} className="mb-3" controlId="formIssueType">
             <Form.Label>Task type</Form.Label>
             <Form.Select
               name="type"
@@ -90,22 +109,31 @@ const NewRequest = () => {
 
           <Form.Group as={Col} className="mb-3" controlId="formDate">
             <Form.Label>Date</Form.Label>
-            <Form.Control
-              type="date"
-              name="date"
-              placeholder="Enter date"
-              required
-            />
+            <Form.Control type="date" name="date" required />
           </Form.Group>
         </Row>
 
-        <Form.Group className="mb-3" controlId="formText">
-          <Form.Label>Comments</Form.Label>
-          <Form.Control name="comments" as="textarea" rows={3} />
-          <Form.Text className="text-muted">
-            Your feedback will not be shared with anyone else.
-          </Form.Text>
-        </Form.Group>
+        <Row>
+          <Form.Group as={Col} className="mb-3" controlId="formTitle">
+            <Form.Label>Title</Form.Label>
+            <Form.Control name="title" placeholder="Enter title" required />
+          </Form.Group>
+
+          <Form.Group as={Col} className="mb-3" controlId="formDeadline">
+            <Form.Label>Deadline</Form.Label>
+            <Form.Control type="date" name="deadline" />
+          </Form.Group>
+        </Row>
+
+        <Row>
+          <Form.Group className="mb-3" controlId="formText">
+            <Form.Label>Comments</Form.Label>
+            <Form.Control name="comments" as="textarea" rows={3} />
+            <Form.Text className="text-muted">
+              Your feedback will not be shared with anyone else.
+            </Form.Text>
+          </Form.Group>
+        </Row>
 
         <Button variant="dark" type="submit" style={{ float: "right" }}>
           Submit
@@ -114,7 +142,7 @@ const NewRequest = () => {
         <br />
         <br />
         <br />
-      </form>
+      </form> */}
     </div>
   );
 };

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import Card from "../components/Card";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import Row from "react-bootstrap/Row";
+import SearchCard from "../components/SearchCard";
 
 const SearchResults = () => {
   const [requests, setRequests] = useState([]);
@@ -22,21 +23,19 @@ const SearchResults = () => {
   //===========
 
   useEffect(() => {
-    // fetchTasks();
     fetchRequests();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <>
+    <Row md={"auto"} className="g-4">
       {requests.map((requests) => {
         return (
           <div key={uuidv4()}>
-            <Card requests={requests} />
-            <br />
+            <SearchCard requests={requests} />
           </div>
         );
       })}
-    </>
+    </Row>
   );
 };
 
