@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MyTasksCard from "../components/MyTasksCard";
 
+
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([]);
   const [allStatuses, setAllStatuses] = useState([]);
@@ -15,7 +16,7 @@ const Tasks = () => {
   const completeTask = async (identifier, status, index) => {
     const res = await fetch("http://localhost:5001/complete", {
       method: "POST",
-      // mode: "cors",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -39,6 +40,7 @@ const Tasks = () => {
 
   return (
     <div>
+
       <h1>My Tasks</h1>
 
       <h3>In Progress</h3>
@@ -95,6 +97,7 @@ const Tasks = () => {
           ""
         );
       })}
+
     </div>
   );
 };

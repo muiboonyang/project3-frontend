@@ -1,8 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import styles from "./SearchCard.module.css";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-// import styles from "./SearchCard.module.css";
+
 
 const SearchCard = (props) => {
   return (

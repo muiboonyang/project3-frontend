@@ -21,6 +21,7 @@ const NewRequest = () => {
   const [message, setMessage] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
+
   const onFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
@@ -35,7 +36,8 @@ const NewRequest = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
+
+   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await fetch("http://localhost:5001/requests", {
@@ -72,9 +74,24 @@ const NewRequest = () => {
       console.log(err);
     }
   };
+  
+  const onFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
 
+  const onFileUpload = async (e) => {
+    const formData = new FormData();
+    formData.append("image", selectedFile);
+    console.log(formData);
+    await fetch("http://localhost:5001/requests", {
+      method: "POST",
+      body: formData,
+    });
+  };
+
+ 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={()=>{handleSubmit(); onFileUpload()}}>
       <Row>
         <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
           <Form.Label>Name</Form.Label>
@@ -235,14 +252,12 @@ const NewRequest = () => {
         </Form.Group>
       </Row>
 
+
       <Button variant="dark" type="submit" style={{ float: "right" }}>
         Submit
       </Button>
 
-      <br />
-      <br />
-      <br />
-      <div className={styles.message}>
+       <div className={styles.message}>
         {message ? (
           <Alert variant="dark">
             <p>{message}</p>

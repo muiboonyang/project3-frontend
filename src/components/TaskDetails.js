@@ -13,11 +13,9 @@ const TaskDetails = () => {
       `http://localhost:5001/search/${params.type}/${params.id}`
     );
     const data = await res.json();
-    console.log(data);
     setTaskDetails(data);
-    // console.log(data[0]);
-    // const data2 = Object.entries(data[0]);
-    // console.log(data2);
+    console.log(data);
+
   };
 
   const updateAcceptance = async () => {
@@ -75,7 +73,6 @@ const TaskDetails = () => {
   };
 
   return (
-    // <>{taskDetails}</>
 
     <div>
       {taskDetails ? (
