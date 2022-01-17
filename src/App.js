@@ -14,23 +14,25 @@ import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAcount";
 
 const App = () => {
-  // const [token, setToken] = useState();
-  const [loginStatus, setLoginStatus] = useState();
-
-  // if (!token) {
-  //   return <Login setToken={setToken} />;
-  // }
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [profileName, setProfileName] = useState("");
 
   const handleLogin = async () => {
     const res = await fetch("http://localhost:5001/sessions");
     const data = await res.json();
     console.log(data);
-    setLoginStatus(data.username);
   };
 
   return (
-    <LoginContext.Provider value={{ loginStatus }}>
-      {/* <LoginContext.Provider value={{ setToken }}> */}
+    <LoginContext.Provider
+      value={{
+        profileName,
+        setProfileName,
+        loggedIn,
+        setLoggedIn,
+        handleLogin,
+      }}
+    >
       <BrowserRouter>
         <NavBar />
         <br />
@@ -40,11 +42,8 @@ const App = () => {
           <Route path="/search/:type" exact component={SearchResults} />
           <Route path="/mytasks" exact component={MyTasks} />
           <Route path="/search/:type/:id" exact component={TaskDetails} />
-          {/* <Route path="/login" exact component={Login} /> */}
-          <Route path="/login">
-            <Login handleLogin={handleLogin} />
-          </Route>
           <Route path="/register" exact component={CreateAccount} />
+          <Route path="/login" exact component={Login} />
         </Switch>
       </BrowserRouter>
     </LoginContext.Provider>

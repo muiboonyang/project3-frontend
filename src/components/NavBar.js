@@ -1,9 +1,10 @@
+import { Link } from "react-router-dom";
 import React, { useContext } from "react";
+import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./NavBar.module.css";
-import LoginContext from "../context/login-context";
 
 const NavBar = () => {
   const loginContext = useContext(LoginContext);
@@ -11,10 +12,12 @@ const NavBar = () => {
   return (
     <div className={styles.navbar}>
       <Navbar bg="dark" variant="dark">
-        <Navbar.Brand href="/">
-          <b>
-            <i className="fa fa-fw fa-tasks"></i> Task App
-          </b>
+        <Navbar.Brand>
+          <Link to="/">
+            <b>
+              <i className="fa fa-fw fa-tasks"></i> Task App
+            </b>
+          </Link>
         </Navbar.Brand>
 
         <Nav className="me-auto">
@@ -24,61 +27,59 @@ const NavBar = () => {
             </Dropdown.Toggle>
 
             <Dropdown.Menu variant="dark">
-              <Dropdown.Item
-                className={styles.dropdown}
-                href="/search/all"
-                value="all"
-              >
-                <i className="fa fa-fw fa-thumb-tack"></i> All tasks
-              </Dropdown.Item>
+              <Link to="/search/all">
+                <Dropdown.Item className={styles.dropdown} value="all">
+                  <i className="fa fa-fw fa-thumb-tack"></i> All tasks
+                </Dropdown.Item>
+              </Link>
 
-              <Dropdown.Item
-                className={styles.dropdown}
-                href="/search/plumbing"
-                value="plumbing"
-              >
-                <i className="fa fa-fw fa-tint"></i> Plumbing
-              </Dropdown.Item>
-              <Dropdown.Item
-                className={styles.dropdown}
-                href="/search/cleaning"
-                value="cleaning"
-              >
-                <i className="fa fa-fw fa-shower"></i> Cleaning
-              </Dropdown.Item>
-              <Dropdown.Item
-                className={styles.dropdown}
-                href="/search/grocery"
-                value="grocery"
-              >
-                <i className="fa fa-fw fa-shopping-cart"></i> Grocery
-              </Dropdown.Item>
+              <Link to="/search/plumbing">
+                <Dropdown.Item className={styles.dropdown} value="plumbing">
+                  <i className="fa fa-fw fa-tint"></i> Plumbing
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/search/cleaning">
+                <Dropdown.Item className={styles.dropdown} value="cleaning">
+                  <i className="fa fa-fw fa-shower"></i> Cleaning
+                </Dropdown.Item>
+              </Link>
+
+              <Link to="/search/grocery">
+                <Dropdown.Item className={styles.dropdown} value="grocery">
+                  <i className="fa fa-fw fa-shopping-cart"></i> Grocery
+                </Dropdown.Item>
+              </Link>
             </Dropdown.Menu>
           </Dropdown>
 
-          <a href="/createrequest">
+          <Link to="/createrequest">
             <i className="fa fa-fw fa-envelope"></i> New Request
-          </a>
+          </Link>
         </Nav>
 
-        <Nav placement="end">
-          <a href="/mytasks">
-            <i className="fa fa-fw fa-list"></i> My Tasks
-          </a>
-        </Nav>
+        <Nav>
+          {loginContext.profileName ? (
+            <>
+              <Link to="/mytasks">
+                <i className="fa fa-fw fa-list"></i>
+                My Tasks
+              </Link>
 
-        <Nav placement="end">
-          <a href="/mytasks">
-            <i className="fa fa-fw fa-user"></i>
-            {`<Current user>`}
-            {loginContext.loginStatus}
-          </a>
-        </Nav>
+              <Link to="/mytasks">
+                <i className="fa fa-fw fa-user"></i>
+                {loginContext.profileName}
+              </Link>
 
-        <Nav placement="end">
-          <a href="/login">
-            <i className="fa fa-fw fa-user"></i> Log In
-          </a>
+              <Link to="/">
+                <i className="fa fa-fw fa-sign-out"></i>
+              </Link>
+            </>
+          ) : (
+            <Link to="/login">
+              <i className="fa fa-fw fa-user"></i> Log In
+            </Link>
+          )}
         </Nav>
       </Navbar>
     </div>
