@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
+import styles from "./TaskDetails.module.css";
 
 const TaskDetails = () => {
   const [taskDetails, setTaskDetails] = useState(null);
@@ -15,7 +15,6 @@ const TaskDetails = () => {
     const data = await res.json();
     setTaskDetails(data);
     console.log(data);
-
   };
 
   const updateAcceptance = async () => {
@@ -73,32 +72,53 @@ const TaskDetails = () => {
   };
 
   return (
-
-    <div>
+    <>
       {taskDetails ? (
-        <Card>
-          <Card.Title>{taskDetails.title}</Card.Title>
-          <Card.Text>
-            {taskDetails.type.charAt(0).toUpperCase() +
-              taskDetails.type.slice(1)}
-          </Card.Text>
-          <a href={`mailto:${taskDetails.email}`}>{taskDetails.name}</a>
-          <p>{taskDetails.contact}</p>
-          <p>Date of request: {convertToDateFormat(taskDetails.date)}</p>
-          <p>Required by: {convertToDateFormat(taskDetails.deadline)}</p>
-          <p>Comments: {taskDetails.comments}</p>
-          {taskDetails.completed ? (
-            ""
-          ) : (
-            <Button type="submit" onClick={updateAcceptance}>
-              {status ? "HELPED" : "HELP"}
-            </Button>
-          )}
-        </Card>
+        <div className={styles.container}>
+          <div className={styles.detailsContainer}>
+            <h5>{taskDetails.title}</h5>
+            <div className={styles.subheading}>
+              <h6>
+                {taskDetails.type.charAt(0).toUpperCase() +
+                  taskDetails.type.slice(1)}
+              </h6>
+              <h6>{convertToDateFormat(taskDetails.date)}</h6>
+            </div>
+
+            <img
+              src={`http://localhost:5001/${taskDetails.image}`}
+              alt={`${taskDetails.title}`}
+            />
+
+            <p>Required by: {convertToDateFormat(taskDetails.deadline)}</p>
+            <div className={styles.details}>
+              <h6>About this request:</h6>
+              {taskDetails.comments}
+            </div>
+          </div>
+
+          <div className={styles.contactContainer}>
+            <p> {taskDetails.name}</p>
+            <a href={`mailto:${taskDetails.email}`}>
+              <div>Chat</div>
+            </a>
+            {taskDetails.completed ? (
+              ""
+            ) : (
+              <Button
+                variant="outline-info"
+                type="submit"
+                onClick={updateAcceptance}
+              >
+                {status ? "Helping Out" : "Help Out"}
+              </Button>
+            )}
+          </div>
+        </div>
       ) : (
         ""
       )}
-    </div>
+    </>
   );
 };
 

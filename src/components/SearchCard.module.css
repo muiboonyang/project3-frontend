@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 16rem;
+  height: 16rem;
+  transition: transform 0.5s;
+  border: 0.5px solid grey;
+  box-sizing: content-box;
+}
+.container img {
+  width: 100%;
+  height: auto;
+}
+
+.container div {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.container h3,
+h6 {
+  color: grey;
+}
+
+.container h3 {
+  text-align: center;
+}
+
+.container a {
+  text-decoration: none;
+}
+
+.container:hover {
+  transform: scale(1.1);
+}
