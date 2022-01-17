@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from "uuid";
 import Row from "react-bootstrap/Row";
 import SearchCard from "../components/SearchCard";
 
+
 const SearchResults = () => {
   const [requests, setRequests] = useState([]);
   const params = useParams();

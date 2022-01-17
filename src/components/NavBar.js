@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "./NavBar.module.css";
+import LoginContext from "../context/login-context";
 
 const NavBar = () => {
+  const loginContext = useContext(LoginContext);
+
   return (
     <div className={styles.navbar}>
       <Navbar bg="dark" variant="dark">
@@ -62,6 +65,10 @@ const NavBar = () => {
           <a href="/mytasks">
             <i className="fa fa-fw fa-list"></i> My Tasks
           </a>
+        </Nav>
+
+        <Nav placement="end">
+          <a href="/tasks">Current user: {loginContext.loginStatus}</a>
         </Nav>
 
         <Nav placement="end">
