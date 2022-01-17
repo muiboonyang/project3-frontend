@@ -10,7 +10,6 @@ import Row from "react-bootstrap/Row";
 import SearchCard from "../components/SearchCard.js";
 // import styles from "./SearchResults.module.css";
 
-
 const SearchResults = () => {
 
   const [requests, setRequests] = useState([]);
