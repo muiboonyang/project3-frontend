@@ -16,7 +16,7 @@ const Tasks = () => {
   const completeTask = async (identifier, status, index) => {
     const res = await fetch("http://localhost:5001/complete", {
       method: "POST",
-      // mode: "cors",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },

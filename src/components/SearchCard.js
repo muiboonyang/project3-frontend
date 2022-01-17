@@ -4,6 +4,7 @@ import styles from "./SearchCard.module.css";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
+
 const SearchCard = (props) => {
   return (
     <NavLink to={`${props.requests.type}/${props.requests._id}`}>

@@ -15,12 +15,13 @@ const TaskDetails = () => {
     const data = await res.json();
     setTaskDetails(data);
     console.log(data);
+
   };
 
   const updateAcceptance = async () => {
     const res = await fetch("http://localhost:5001/tasks", {
       method: "POST",
-      // mode: "cors",
+      mode: "cors",
       headers: {
         "Content-Type": "application/json",
       },
@@ -38,6 +39,7 @@ const TaskDetails = () => {
 
   useEffect(() => {
     fetchTaskDetails();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
@@ -71,6 +73,7 @@ const TaskDetails = () => {
   };
 
   return (
+
     <div>
       {taskDetails ? (
         <Card>

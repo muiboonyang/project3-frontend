@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Row from "react-bootstrap/Row";
-import SearchCard from "../components/SearchCard";
+import SearchCard from "../components/SearchCard.js";
+// import styles from "./SearchResults.module.css";
 
 
 const SearchResults = () => {
@@ -25,7 +26,8 @@ const SearchResults = () => {
 
   useEffect(() => {
     fetchRequests();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <Row md={"auto"} className="g-4">
