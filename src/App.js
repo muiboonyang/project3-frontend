@@ -6,7 +6,7 @@ import LoginContext from "./context/login-context";
 import NavBar from "./components/NavBar";
 
 import Home from "./pages/Home";
-import NewRequest from "./pages/NewRequest";
+import CreateRequest from "./pages/CreateRequest";
 import SearchResults from "./pages/SearchResults";
 import TaskDetails from "./components/TaskDetails";
 import MyTasks from "./pages/MyTasks";
@@ -14,7 +14,13 @@ import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAcount";
 
 const App = () => {
+  // const [token, setToken] = useState();
   const [loginStatus, setLoginStatus] = useState();
+
+  // if (!token) {
+  //   return <Login setToken={setToken} />;
+  // }
+
   const handleLogin = async () => {
     const res = await fetch("http://localhost:5001/sessions");
     const data = await res.json();
@@ -24,15 +30,17 @@ const App = () => {
 
   return (
     <LoginContext.Provider value={{ loginStatus }}>
+      {/* <LoginContext.Provider value={{ setToken }}> */}
       <BrowserRouter>
         <NavBar />
         <br />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/newrequest" exact component={NewRequest} />
+          <Route path="/createrequest" exact component={CreateRequest} />
           <Route path="/search/:type" exact component={SearchResults} />
           <Route path="/mytasks" exact component={MyTasks} />
           <Route path="/search/:type/:id" exact component={TaskDetails} />
+          {/* <Route path="/login" exact component={Login} /> */}
           <Route path="/login">
             <Login handleLogin={handleLogin} />
           </Route>

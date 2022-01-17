@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import MyTasksCard from "../components/MyTasksCard";
-
+import { v4 as uuidv4 } from "uuid";
 
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([]);
@@ -14,7 +14,7 @@ const Tasks = () => {
   };
 
   const completeTask = async (identifier, status, index) => {
-    const res = await fetch("http://localhost:5001/complete", {
+    const res = await fetch("http://localhost:5001/tasks/complete", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -40,41 +40,44 @@ const Tasks = () => {
 
   return (
     <div>
-
       <h1>My Tasks</h1>
 
       <h3>In Progress</h3>
       {allTasks.map((task, index) => {
         return task.accepted && !task.completed ? (
-          <>
+          <div key={uuidv4()}>
             <MyTasksCard
               task={task}
               index={index}
               completeTask={completeTask}
             />
-          </>
+          </div>
         ) : (
           ""
         );
       })}
 
+      <br />
       <h3>Completed</h3>
       {allTasks.map((task) => {
         return task.accepted && task.completed ? (
-          <>
+          <div key={uuidv4()}>
             <MyTasksCard task={task} />
-          </>
+          </div>
         ) : (
           ""
         );
       })}
 
+      <hr />
       <h1>My Requests</h1>
 
       <h3>Pending Acceptance</h3>
       {allTasks.map((task) => {
         return task.name === "Jeng Mun" && !task.accepted ? (
-          <MyTasksCard task={task} />
+          <div key={uuidv4()}>
+            <MyTasksCard task={task} />
+          </div>
         ) : (
           ""
         );
@@ -83,21 +86,29 @@ const Tasks = () => {
       <h3>In Progress</h3>
       {allTasks.map((task, index) => {
         return task.name === "Jeng Mun" && task.accepted && !task.completed ? (
-          <MyTasksCard task={task} index={index} completeTask={completeTask} />
+          <div key={uuidv4()}>
+            <MyTasksCard
+              task={task}
+              index={index}
+              completeTask={completeTask}
+            />
+          </div>
         ) : (
           ""
         );
       })}
 
+      <br />
       <h3>Completed</h3>
       {allTasks.map((task) => {
         return task.name === "Jeng Mun" && task.accepted && task.completed ? (
-          <MyTasksCard task={task} />
+          <div key={uuidv4()}>
+            <MyTasksCard task={task} />
+          </div>
         ) : (
           ""
         );
       })}
-
     </div>
   );
 };

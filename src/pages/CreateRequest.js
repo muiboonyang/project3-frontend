@@ -4,9 +4,9 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
-import styles from "./NewRequest.module.css";
+import styles from "./CreateRequest.module.css";
 
-const NewRequest = () => {
+const CreateRequest = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [contact, setContact] = useState("");
@@ -21,12 +21,12 @@ const NewRequest = () => {
   const [message, setMessage] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
-
   const onFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
   };
 
   const onFileUpload = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append("image", selectedFile);
     console.log(formData);
@@ -36,8 +36,7 @@ const NewRequest = () => {
     });
   };
 
-
-   const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const res = await fetch("http://localhost:5001/requests", {
@@ -74,24 +73,14 @@ const NewRequest = () => {
       console.log(err);
     }
   };
-  
-  const onFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
-  };
 
-  const onFileUpload = async (e) => {
-    const formData = new FormData();
-    formData.append("image", selectedFile);
-    console.log(formData);
-    await fetch("http://localhost:5001/requests", {
-      method: "POST",
-      body: formData,
-    });
-  };
-
- 
   return (
-    <form onSubmit={()=>{handleSubmit(); onFileUpload()}}>
+    <form
+      onSubmit={(e) => {
+        handleSubmit(e);
+        onFileUpload(e);
+      }}
+    >
       <Row>
         <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
           <Form.Label>Name</Form.Label>
@@ -232,7 +221,6 @@ const NewRequest = () => {
           <Form.Label>Upload file</Form.Label>
           <br />
           <input type="file" onChange={onFileChange} />
-          <button onClick={onFileUpload}>Upload</button>
         </Form.Group>
       </Row>
 
@@ -252,12 +240,14 @@ const NewRequest = () => {
         </Form.Group>
       </Row>
 
-
       <Button variant="dark" type="submit" style={{ float: "right" }}>
         Submit
       </Button>
 
-       <div className={styles.message}>
+      <br />
+      <br />
+      <br />
+      <div className={styles.message}>
         {message ? (
           <Alert variant="dark">
             <p>{message}</p>
@@ -268,4 +258,4 @@ const NewRequest = () => {
   );
 };
 
-export default NewRequest;
+export default CreateRequest;

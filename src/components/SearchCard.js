@@ -1,9 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import styles from "./SearchCard.module.css";
+// import styles from "./SearchCard.module.css";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-
 
 const SearchCard = (props) => {
   return (
@@ -17,7 +16,10 @@ const SearchCard = (props) => {
         >
           <Card.Body>
             <Card.Title>{props.requests.title}</Card.Title>
-            {/* <img src="http://localhost:5001/uploads/2020_Festival_Atmosphere_Dan_Campbell.jpg"></img> */}
+            <img
+              src={`http://localhost:5001/${props.requests.image}`}
+              alt={`${props.requests.title}`}
+            />
           </Card.Body>
         </Card>
       </Col>
