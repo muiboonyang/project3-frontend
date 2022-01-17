@@ -56,7 +56,7 @@ const NavBar = () => {
             </Dropdown.Menu>
           </Dropdown>
 
-          <a href="/newrequest">
+          <a href="/createrequest">
             <i className="fa fa-fw fa-envelope"></i> New Request
           </a>
         </Nav>
@@ -68,7 +68,11 @@ const NavBar = () => {
         </Nav>
 
         <Nav placement="end">
-          <a href="/tasks">Current user: {loginContext.loginStatus}</a>
+          <a href="/mytasks">
+            <i className="fa fa-fw fa-user"></i>
+            {`<Current user>`}
+            {loginContext.loginStatus}
+          </a>
         </Nav>
 
         <Nav placement="end">
