@@ -75,7 +75,8 @@ body {
 
 /* Formatting for login page */
 
-.login {
+.login,
+.createAccount {
   margin: auto;
   width: 500px;
 }
@@ -87,7 +88,8 @@ body {
     display: block;
   }
 
-  .login {
+  .login,
+  .createAccount {
     width: 300px;
   }
 }
