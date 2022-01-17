@@ -62,7 +62,7 @@ const NavBar = () => {
         </Nav>
 
         <Nav placement="end">
-          <a href="/tasks">
+          <a href="/mytasks">
             <i className="fa fa-fw fa-list"></i> My Tasks
           </a>
         </Nav>
