@@ -1,9 +1,5 @@
-
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
 import CardTask from "../components/CardTask";
-=======
->>>>>>> main
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import Row from "react-bootstrap/Row";
@@ -11,7 +7,6 @@ import SearchCard from "../components/SearchCard.js";
 // import styles from "./SearchResults.module.css";
 
 const SearchResults = () => {
-
   const [requests, setRequests] = useState([]);
   const params = useParams();
 
@@ -39,14 +34,7 @@ const SearchResults = () => {
       {requests.map((requests) => {
         return (
           <div key={uuidv4()}>
-<<<<<<< HEAD
-
-            <CardTask requests={requests} />           
-
-            <br />
-=======
             <SearchCard requests={requests} />
->>>>>>> main
           </div>
         );
       })}
