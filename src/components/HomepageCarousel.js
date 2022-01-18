@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from "react-bootstrap/Carousel";
 import styles from "./HomepageCarousel.module.css";
+//carousel code goes here
 function HomepageCarousel() {
   return (
     <Carousel bsPrefix={styles.carousel}>
