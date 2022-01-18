@@ -1,68 +1,64 @@
-import React from "react";
-import Carousel from "react-bootstrap/Carousel";
+import React, { useState, useEffect } from "react";
 import styles from "./HomepageCarousel.module.css";
+import Carousel from "react-bootstrap/Carousel";
 
 const HomepageCarousel = () => {
   return (
-    <Carousel bsPrefix={styles.carousel}>
-      <Carousel.Item interval={5000}>
-        {/* <a href="/search/cleaning"> */}
-        <img
-          controls={false}
-          fade="true"
-          indicators="false"
-          className="d-block w-100"
-          src="https://www.borneomainland.com/wp-content/uploads/2021/08/3-1.jpg"
-          alt="First slide"
-        />
-        <Carousel.Caption>
-          <h3>Find help with your cleaning needs!</h3>
-          <p>
-            Looking for assistance with house-keeping? Click here to explore all
-            the options available!
-          </p>
-        </Carousel.Caption>
-        {/* </a> */}
-      </Carousel.Item>
-      <Carousel.Item interval={5000}>
-        {/* <a href="/search/plumbing"> */}
-        <img
-          controls={false}
-          fade="true"
-          indicators="false"
-          className="d-block w-100"
-          src="https://www.thebestsingapore.com/wp-content/uploads/2017/09/plumbing-service-singapore-1.jpg"
-          alt="Second slide"
-        />
-        <Carousel.Caption>
-          <h3>Find help with your plumbing needs!</h3>
-          <p>
-            Looking for assistance with plumbing? Click here to explore all the
-            options available!
-          </p>
-        </Carousel.Caption>
-        {/* </a> */}
-      </Carousel.Item>
-      <Carousel.Item interval={5000}>
-        {/* <a href="/search/grocery"> */}
-        <img
-          controls={false}
-          fade="true"
-          indicators="false"
-          className="d-block w-100"
-          src="https://upload.wikimedia.org/wikipedia/commons/6/6d/Good_Food_Display_-_NCI_Visuals_Online.jpg"
-          alt="Third slide"
-        />
-        <Carousel.Caption>
-          <h3>Find help with your Grocery needs!</h3>
-          <p>
-            Looking for assistance with Groceries? Click here to explore all the
-            options available!
-          </p>
-        </Carousel.Caption>
-        {/* </a> */}
-      </Carousel.Item>
-    </Carousel>
+    <>
+      <Carousel className={styles.carousel}>
+        <Carousel.Item interval={5000}>
+          <img
+            controls={false}
+            fade="true"
+            indicators="false"
+            className="d-block w-100"
+            src="https://i.picsum.photos/id/1048/5616/3744.jpg?hmac=N5TZKe4gtmf4hU8xRs-zbS4diYiO009Jni7n50609zk"
+            alt="Cleaning"
+          />
+          <Carousel.Caption className={styles.carouselCaption}>
+            <h3>Find help for your cleaning needs!</h3>
+            <p>
+              Looking for assistance with house-keeping? <br />
+              Explore the options above!
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={5000}>
+          <img
+            controls={false}
+            fade="true"
+            indicators="false"
+            className="d-block w-100"
+            src="https://i.picsum.photos/id/1049/3900/3120.jpg?hmac=Ox2snaSyRuEofh721sagxPbwVzLtung57FNHefB8Kdw"
+            alt="Plumbing"
+          />
+          <Carousel.Caption className={styles.carouselCaption}>
+            <h3>Find help for your plumbing needs!</h3>
+            <p>
+              Looking for assistance with plumbing? <br />
+              Explore the options above!
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+        <Carousel.Item interval={5000}>
+          <img
+            controls={false}
+            fade="true"
+            indicators="false"
+            className="d-block w-100"
+            src="https://i.picsum.photos/id/1050/6000/4000.jpg?hmac=HhCXFcOrIrNguK7GqP6VhICXPa5FmcLZdug505qiEZM"
+            alt="Grocery"
+          />
+          <Carousel.Caption className={styles.carouselCaption}>
+            <h3>Find help for your grocery needs!</h3>
+            <p>
+              Looking for assistance with Groceries? <br />
+              Explore the options above!
+            </p>
+          </Carousel.Caption>
+        </Carousel.Item>
+      </Carousel>
+    </>
   );
 };
 

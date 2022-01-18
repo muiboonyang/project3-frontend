@@ -87,7 +87,7 @@ const CreateAccount = () => {
         ) : null}
       </div>
 
-      <div className="createAccount">
+      <div className={styles.createAccount}>
         <h3>Create Account</h3>
         <br />
 

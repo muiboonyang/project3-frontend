@@ -17,37 +17,7 @@ body {
   background-color: whitesmoke;
 }
 
-/* Formatting for carousel */
-
-.carousel-header {
-  text-align: center;
-}
-
-.carousel {
-  text-align: center;
-  position: relative;
-  width: 300px;
-  margin: auto;
-}
-
-.carousel-title {
-  background: rgba(28, 29, 28, 0.5);
-  text-decoration: none;
-  color: white;
-}
-
-.carousel-title a {
-  text-decoration: none;
-  color: white;
-}
-
-.carousel-title a:hover {
-  text-decoration: none;
-  color: white;
-  font-weight: bold;
-}
-
-/* Formatting for results */
+/* Formatting for spinner */
 
 .spinner {
   margin: 3rem auto;
@@ -55,30 +25,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.card-body,
-.footer {
-  text-align: center;
-}
-
-.summary {
-  text-align: justify;
-  font-size: 13px;
-}
-
-/* Formatting for contact page */
-
-.contact {
-  margin: auto;
-}
-
-/* Formatting for login page */
-
-.login,
-.createAccount {
-  margin: auto;
-  width: 500px;
 }
 
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */

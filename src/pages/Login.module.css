@@ -1,4 +1,11 @@
+/* Formatting for login page */
+
 .message {
   font-size: 1.2em;
   text-align: center;
+}
+
+.login {
+  margin: auto;
+  width: 500px;
 }

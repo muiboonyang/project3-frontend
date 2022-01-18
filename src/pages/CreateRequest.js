@@ -72,7 +72,7 @@ const CreateRequest = () => {
         setSelectedFile("");
       } else {
         setMessage("Request creation unsuccessful!");
-        setShowSuccess(true);
+        setShowFailure(true);
       }
     } catch (err) {
       console.log(err);

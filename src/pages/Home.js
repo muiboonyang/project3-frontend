@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
-// import styles from "./Home.module.css";
+import styles from "./Home.module.css";
 import HomepageCarousel from "../components/HomepageCarousel";
 
 const Home = () => {
@@ -37,23 +37,30 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
-      <Button onClick={seedTask} variant="primary" type="submit">
-        Seed Tasks
-      </Button>{" "}
-      <Button onClick={deleteTasks} variant="danger" type="submit">
-        DELETE ALL TASKS
-      </Button>{" "}
-      <Button onClick={seedUser} variant="success" type="submit">
-        Seed Users
-      </Button>{" "}
-      <Button onClick={deleteUsers} variant="danger" type="submit">
-        DELETE ALL USERS
-      </Button>
+    <>
+      <div className="carousel">
+        <HomepageCarousel></HomepageCarousel>
+      </div>
       <br />
-      <HomepageCarousel></HomepageCarousel>
       <br />
-    </div>
+      <div className={styles.buttons}>
+        <Button onClick={seedTask} variant="dark" type="submit" size="sm">
+          Seed Tasks
+        </Button>{" "}
+        <Button onClick={deleteTasks} variant="danger" type="submit" size="sm">
+          Delete Tasks
+        </Button>{" "}
+        <Button onClick={seedUser} variant="dark" type="submit" size="sm">
+          Seed Users
+        </Button>{" "}
+        <Button onClick={deleteUsers} variant="danger" type="submit" size="sm">
+          Delete Users
+        </Button>
+      </div>
+      <br />
+      <br />
+      <br />
+    </>
   );
 };
 
