@@ -129,7 +129,7 @@ const TaskDetails = () => {
                 src={`https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=night&postal=${taskDetails.zipcode}&zoom=16&height=200&width=200&points=[${location.LATITUDE}, ${location.LONGITUDE},"255,255,255"]&color=&fillColor=`}
               ></img>
             ) : (
-              ""
+              <p>Please contact requestor for updated location</p>
             )}
           </div>
         </div>
