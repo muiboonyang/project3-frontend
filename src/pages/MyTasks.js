@@ -7,6 +7,7 @@ import styles from "./MyTasks.module.css";
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([]);
   const [allStatuses, setAllStatuses] = useState([]);
+  const [review, setReview] = useState("");
   const loginContext = useContext(LoginContext);
 
   const fetchAllTasks = async () => {
@@ -39,7 +40,7 @@ const Tasks = () => {
 
   useEffect(() => {
     fetchAllTasks();
-  }, []);
+  }, [review]);
 
   return (
     <div>
@@ -78,9 +79,8 @@ const Tasks = () => {
             ""
           );
         })}
-        {/* </div> */}
       </div>
-
+      <br />
       <h1>My Requests</h1>
       <hr></hr>
 
@@ -127,7 +127,7 @@ const Tasks = () => {
             task.accepted &&
             task.completed ? (
             <div key={uuidv4()}>
-              <MyTasksCard task={task} />
+              <MyTasksCard task={task} setReview={setReview} />
             </div>
           ) : (
             ""
