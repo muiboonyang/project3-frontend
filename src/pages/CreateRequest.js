@@ -76,9 +76,9 @@ const CreateRequest = () => {
 
   return (
     <form
-      onSubmit={(e) => {
-        handleSubmit(e);
-        onFileUpload(e);
+      onSubmit={() => {
+        handleSubmit();
+        onFileUpload();
       }}
     >
       <Row>
@@ -121,7 +121,7 @@ const CreateRequest = () => {
         </Form.Group>
       </Row>
 
-      <Form.Group className="mb-3" controlId="formGridAddress1">
+      <Form.Group className="mb-3" controlId="formGridAddress">
         <Form.Label>Address</Form.Label>
         <Form.Control
           name="address"
@@ -133,7 +133,7 @@ const CreateRequest = () => {
       </Form.Group>
 
       <Row className="mb-3">
-        <Form.Group as={Col} className="mb-3" controlId="formGridZip">
+        <Form.Group as={Col} className="mb-3" controlId="formGridUnit">
           <Form.Label>Unit number</Form.Label>
           <Form.Control
             name="unit"
