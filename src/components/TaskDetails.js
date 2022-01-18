@@ -128,7 +128,7 @@ const TaskDetails = () => {
               ) : loginContext.loggedIn ? (
                 (!taskDetails.acceptedBy ||
                   taskDetails.acceptedBy === loginContext.profileName) &&
-                taskDetails.name !== loginContext.profileName ? (
+                taskDetails.username !== loginContext.profileName ? (
                   <Button
                     variant="outline-info"
                     type="submit"

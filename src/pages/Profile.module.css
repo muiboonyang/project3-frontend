@@ -1,4 +1,20 @@
 .profile {
   margin: auto;
   width: 700px;
+
+.reviewsContainer {
+  width: 60%;
+  min-height: 4rem;
+  border: 1px rgb(190, 190, 190) solid;
+  padding: 10px;
+  box-shadow: 2px 2px 10px rgb(190, 190, 190);
+  margin: 10px;
+}
+
+.reviewsContainer div {
+  display: flex;
+}
+
+.reviewsContainer h6 {
+  margin-left: 5px;
 }

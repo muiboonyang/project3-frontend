@@ -5,12 +5,11 @@ import styles from "./MyTasksCard.module.css";
 import Button from "react-bootstrap/Button";
 
 const MyTasksCard = (props) => {
-  const [review, setReview] = useState("");
   const input = useRef("");
   const loginContext = useContext(LoginContext);
 
   const handleSubmitReview = async () => {
-    setReview(input.current.value);
+    props.setReview(input.current.value);
     await fetch("http://localhost:5001/addreview", {
       method: "POST",
       headers: {
@@ -19,6 +18,7 @@ const MyTasksCard = (props) => {
       body: JSON.stringify({
         id: props.task._id,
         review: input.current.value,
+        reviewer: props.task.username,
         acceptedBy: props.task.acceptedBy,
       }),
     });
@@ -60,18 +60,21 @@ const MyTasksCard = (props) => {
       ) : (
         ""
       )}
-      {props.task.completed && props.task.name === loginContext.profileName ? (
-        props.task.review || review ? (
-          <div>
-            <p>Review Submitted!</p>
+      {props.task.completed &&
+      props.task.username === loginContext.profileName ? (
+        props.task.review ? (
+          <div className={styles.reviewSubmit}>
+            <Button variant="danger" disabled>
+              Review Submitted!
+            </Button>
           </div>
         ) : (
-          <div>
+          <div className={styles.giveReviews}>
             <label htmlFor="reviews">Give a review!</label>
             <textarea id="reviews" ref={input}></textarea>
-            <button type="submit" onClick={handleSubmitReview}>
+            <Button variant="outline-danger" onClick={handleSubmitReview}>
               Submit Review
-            </button>
+            </Button>
           </div>
         )
       ) : (
