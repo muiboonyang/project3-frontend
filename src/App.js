@@ -11,7 +11,7 @@ import SearchResults from "./pages/SearchResults";
 import TaskDetails from "./components/TaskDetails";
 import MyTasks from "./pages/MyTasks";
 import Login from "./pages/Login";
-import CreateAccount from "./pages/CreateAcount";
+import CreateAccount from "./pages/CreateAccount";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
