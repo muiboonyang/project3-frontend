@@ -18,9 +18,9 @@ const CreateRequest = () => {
   const [comments, setComments] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
 
-  const [message, setMessage] = useState("");
-  const [showSuccess, setShowSuccess] = useState("");
-  const [showFailure, setShowFailure] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [failureMessage, setFailureMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   const onFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
@@ -54,7 +54,6 @@ const CreateRequest = () => {
           title: title,
           deadline: deadline,
           comments: comments,
-          message: message,
         }),
       });
 
@@ -62,8 +61,8 @@ const CreateRequest = () => {
       console.log(data);
 
       if (res.status === 200) {
-        setMessage("Request created successfully!");
-        setShowSuccess(true);
+        setSuccessMessage("Request created successfully!");
+        setShowMessage(true);
         setType("");
         setDate("");
         setTitle("");
@@ -71,8 +70,8 @@ const CreateRequest = () => {
         setComments("");
         setSelectedFile("");
       } else {
-        setMessage("Request creation unsuccessful!");
-        setShowFailure(true);
+        setFailureMessage("Request creation unsuccessful!");
+        setShowMessage(true);
       }
     } catch (err) {
       console.log(err);
@@ -87,22 +86,22 @@ const CreateRequest = () => {
       }}
     >
       <div className={styles.message}>
-        {message && showSuccess ? (
+        {successMessage && showMessage ? (
           <Alert
             variant="success"
-            onClose={() => setShowSuccess(false)}
+            onClose={() => setShowMessage(false)}
             dismissible
           >
-            {message}
+            {successMessage}
           </Alert>
         ) : null}
-        {message && showFailure ? (
+        {failureMessage && showMessage ? (
           <Alert
             variant="danger"
-            onClose={() => setShowFailure(false)}
+            onClose={() => setShowMessage(false)}
             dismissible
           >
-            {message}
+            {failureMessage}
           </Alert>
         ) : null}
       </div>

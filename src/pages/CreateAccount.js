@@ -17,9 +17,9 @@ const CreateAccount = () => {
   const [unit, setUnit] = useState("");
   const [zipcode, setZipcode] = useState("");
 
-  const [message, setMessage] = useState("");
-  const [showSuccess, setShowSuccess] = useState("");
-  const [showFailure, setShowFailure] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [failureMessage, setFailureMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,8 +45,8 @@ const CreateAccount = () => {
       const data = await res.json();
       console.log(data);
       if (res.status === 200) {
-        setMessage("Account created!");
-        setShowSuccess(true);
+        setSuccessMessage("Account created!");
+        setShowMessage(true);
         setUsername("");
         setPassword("");
         setName("");
@@ -56,8 +56,8 @@ const CreateAccount = () => {
         setUnit("");
         setZipcode("");
       } else {
-        setMessage("Account not created!");
-        setShowFailure(true);
+        setFailureMessage("Account not created!");
+        setShowMessage(true);
       }
     } catch (err) {
       console.log(err);
@@ -67,22 +67,22 @@ const CreateAccount = () => {
   return (
     <>
       <div className={styles.message}>
-        {message && showSuccess ? (
+        {successMessage && showMessage ? (
           <Alert
             variant="success"
-            onClose={() => setShowSuccess(false)}
+            onClose={() => setShowMessage(false)}
             dismissible
           >
-            {message}
+            {successMessage}
           </Alert>
         ) : null}
-        {message && showFailure ? (
+        {failureMessage && showMessage ? (
           <Alert
             variant="danger"
-            onClose={() => setShowFailure(false)}
+            onClose={() => setShowMessage(false)}
             dismissible
           >
-            {message}
+            {failureMessage}
           </Alert>
         ) : null}
       </div>
