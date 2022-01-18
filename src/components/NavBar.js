@@ -100,7 +100,7 @@ const NavBar = () => {
             {loginContext.profileName ? (
               <>
                 <Link to="/createrequest">
-                  <i className="fa fa-fw fa-envelope"></i> New Request
+                  <i className="fa fa-fw fa-envelope"></i> Create New Request
                 </Link>
                 <Link to="/mytasks">
                   <i className="fa fa-fw fa-list"></i>

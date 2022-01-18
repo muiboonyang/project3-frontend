@@ -72,7 +72,7 @@ const Login = () => {
 
       <br />
 
-      <div className="login">
+      <div className={styles.login}>
         <h3>Log In</h3>
         <br />
 
