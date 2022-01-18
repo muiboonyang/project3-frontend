@@ -31,39 +31,38 @@ const Profile = () => {
   }, []);
 
   return (
-    <Tabs defaultActiveKey="1">
-      <Tab eventKey="1" title="Username">
-        Username: {userInfo.username}
-      </Tab>
-      <Tab eventKey="2" title="Name">
-        Name: {userInfo.name}
-      </Tab>
-      <Tab eventKey="3" title="Email">
-        Email: {userInfo.email}
-      </Tab>
-      <Tab eventKey="4" title="Contact">
-        Contact: {userInfo.contact}
-      </Tab>
-      <Tab eventKey="5" title="Address">
-        Address: {userInfo.address}
-      </Tab>
-      <Tab eventKey="6" title="Unit">
-        Unit: {userInfo.unit}
-      </Tab>
-      <Tab eventKey="7" title="Zip-code">
-        Zip-code: {userInfo.zipcode}
-      </Tab>
-    </Tabs>
-    // <>
-    //   Username: {userInfo.username} <br />
-    //   <br />
-    //   Name: {userInfo.name} <br />
-    //   Email: {userInfo.email} <br />
-    //   Contact: {userInfo.contact} <br />
-    //   Address: {userInfo.address} <br />
-    //   Unit: {userInfo.unit} <br />
-    //   Zip Code: {userInfo.zipcode} <br />
-    // </>
+    <>
+      <Tabs defaultActiveKey="1">
+        <Tab eventKey="1" title="Username">
+          Username: {userInfo.username}
+        </Tab>
+        <Tab eventKey="2" title="Name">
+          Name: {userInfo.name}
+        </Tab>
+        <Tab eventKey="3" title="Email">
+          Email: {userInfo.email}
+        </Tab>
+        <Tab eventKey="4" title="Contact">
+          Contact: {userInfo.contact}
+        </Tab>
+        <Tab eventKey="5" title="Address">
+          Address: {userInfo.address}
+        </Tab>
+        <Tab eventKey="6" title="Unit">
+          Unit: {userInfo.unit}
+        </Tab>
+        <Tab eventKey="7" title="Zip-code">
+          Zip-code: {userInfo.zipcode}
+        </Tab>
+        <Tab eventKey="8" title="Reviews">
+          {userInfo.reviews
+            ? userInfo.reviews.map((review) => {
+                return <div>{review}</div>;
+              })
+            : ""}
+        </Tab>
+      </Tabs>
+    </>
   );
 };
 

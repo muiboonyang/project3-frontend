@@ -60,7 +60,8 @@ const MyTasksCard = (props) => {
       ) : (
         ""
       )}
-      {props.task.completed && props.task.name === loginContext.profileName ? (
+      {props.task.completed &&
+      props.task.username === loginContext.profileName ? (
         props.task.review || review ? (
           <div>
             <p>Review Submitted!</p>
