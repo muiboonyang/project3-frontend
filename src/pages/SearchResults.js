@@ -30,7 +30,9 @@ const SearchResults = () => {
   return (
     <div className={styles.container}>
       {requests.map((requests) => {
-        return (
+        return requests.accepted ? (
+          ""
+        ) : (
           <div key={uuidv4()}>
             <SearchCard requests={requests} />
           </div>

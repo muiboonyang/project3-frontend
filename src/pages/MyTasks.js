@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import MyTasksCard from "../components/MyTasksCard";
+import LoginContext from "../context/login-context";
 import { v4 as uuidv4 } from "uuid";
 import styles from "./MyTasks.module.css";
 
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([]);
   const [allStatuses, setAllStatuses] = useState([]);
+  const loginContext = useContext(LoginContext);
 
   const fetchAllTasks = async () => {
     const res = await fetch("http://localhost:5001/search/all");
@@ -45,7 +47,8 @@ const Tasks = () => {
       <h3>In Progress</h3>
       <div className={styles.container}>
         {allTasks.map((task, index) => {
-          return task.accepted && !task.completed ? (
+          return !task.completed &&
+            task.acceptedBy === loginContext.profileName ? (
             <div key={uuidv4()}>
               <MyTasksCard
                 task={task}
@@ -61,7 +64,8 @@ const Tasks = () => {
       <h3>Completed</h3>
       <div className={styles.container}>
         {allTasks.map((task) => {
-          return task.accepted && task.completed ? (
+          return task.completed &&
+            task.acceptedBy === loginContext.profileName ? (
             <div key={uuidv4()}>
               <MyTasksCard task={task} />
             </div>
@@ -74,7 +78,7 @@ const Tasks = () => {
       <h3>Pending Acceptance</h3>
       <div className={styles.container}>
         {allTasks.map((task) => {
-          return task.name === "Jeng Mun" && !task.accepted ? (
+          return task.name === loginContext.profileName && !task.accepted ? (
             <div key={uuidv4()}>
               <MyTasksCard task={task} />
             </div>
@@ -86,7 +90,7 @@ const Tasks = () => {
       <h3>In Progress</h3>
       <div className={styles.container}>
         {allTasks.map((task, index) => {
-          return task.name === "Jeng Mun" &&
+          return task.name === loginContext.profileName &&
             task.accepted &&
             !task.completed ? (
             <div key={uuidv4()} className={styles.container}>
@@ -105,7 +109,9 @@ const Tasks = () => {
       <h3>Completed</h3>
       <div className={styles.container}>
         {allTasks.map((task) => {
-          return task.name === "Jeng Mun" && task.accepted && task.completed ? (
+          return task.name === loginContext.profileName &&
+            task.accepted &&
+            task.completed ? (
             <div key={uuidv4()}>
               <MyTasksCard task={task} />
             </div>
