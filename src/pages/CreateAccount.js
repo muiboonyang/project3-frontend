@@ -47,6 +47,14 @@ const CreateAccount = () => {
       if (res.status === 200) {
         setMessage("Account created!");
         setShowSuccess(true);
+        setUsername("");
+        setPassword("");
+        setName("");
+        setEmail("");
+        setContact("");
+        setAddress("");
+        setUnit("");
+        setZipcode("");
       } else {
         setMessage("Account not created!");
         setShowFailure(true);

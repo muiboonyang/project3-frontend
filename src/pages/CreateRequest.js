@@ -64,6 +64,12 @@ const CreateRequest = () => {
       if (res.status === 200) {
         setMessage("Request created successfully!");
         setShowSuccess(true);
+        setType("");
+        setDate("");
+        setTitle("");
+        setDeadline("");
+        setComments("");
+        setSelectedFile("");
       } else {
         setMessage("Request creation unsuccessful!");
         setShowSuccess(true);
