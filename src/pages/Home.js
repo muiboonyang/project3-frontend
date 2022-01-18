@@ -4,53 +4,60 @@ import Button from "react-bootstrap/Button";
 import HomepageCarousel from "../components/HomepageCarousel";
 //imported the HomepageCarousel to home.js so it's viewable
 const Home = () => {
+  const seedTask = async () => {
+    try {
+      await fetch(`http://localhost:5001/seedtask`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteTasks = async () => {
+    try {
+      await fetch(`http://localhost:5001/delete/alltask`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const seedUser = async () => {
+    try {
+      await fetch(`http://localhost:5001/seeduser`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteUsers = async () => {
+    try {
+      await fetch(`http://localhost:5001/delete/alluser`);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-    <div className="seedData">
-      Home
+
+    <div className="home">
+      <h3>Home</h3>
       <br />
       <HomepageCarousel></HomepageCarousel>
       <br />
+      <Button onClick={seedTask} variant="primary" type="submit">
+        Seed Tasks
+      </Button>
       <br /> <br />
-      <form
-        action="http://localhost:5001/seedtask"
-        method="post"
-        className="form-submit"
-      >
-        <Button variant="primary" type="submit">
-          Seed Tasks
-        </Button>
-      </form>
-      <br />
-      <form
-        action="http://localhost:5001/delete/alltask"
-        method="post"
-        className="form-submit"
-      >
-        <Button variant="danger" type="submit">
-          DELETE ALL TASKS
-        </Button>
-      </form>
-      <br />
-      <br />
-      <form
-        action="http://localhost:5001/seeduser"
-        method="post"
-        className="form-submit"
-      >
-        <Button variant="success" type="submit">
-          Seed Users
-        </Button>
-      </form>
-      <br />
-      <form
-        action="http://localhost:5001/delete/alluser"
-        method="post"
-        className="form-submit"
-      >
-        <Button variant="danger" type="submit">
-          DELETE ALL USERS
-        </Button>
-      </form>
+      <Button onClick={deleteTasks} variant="danger" type="submit">
+        DELETE ALL TASKS
+      </Button>
+      <br /> <br />
+      <Button onClick={seedUser} variant="success" type="submit">
+        Seed Users
+      </Button>
+      <br /> <br />
+      <Button onClick={deleteUsers} variant="danger" type="submit">
+        DELETE ALL USERS
+      </Button>
     </div>
   );
 };

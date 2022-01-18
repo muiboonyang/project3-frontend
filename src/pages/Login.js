@@ -11,6 +11,8 @@ const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState("");
+  const [showFailure, setShowFailure] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,8 +35,10 @@ const Login = () => {
         setMessage("Log in successful!");
         loginContext.setLoggedIn(true);
         loginContext.setProfileName(data.username);
+        setShowSuccess(true);
       } else {
         setMessage("Log in unsuccessful!");
+        setShowFailure(true);
       }
     } catch (err) {
       console.log(err);
@@ -42,66 +46,84 @@ const Login = () => {
   };
 
   return (
-    <div className="login">
-      <h3>Log In</h3>
-      <br />
-
-      <form onSubmit={handleSubmit}>
-        <Form.Group className="mb-3" controlId="formLoginUsername">
-          <Form.Label>Username</Form.Label>
-          <Form.Control
-            required
-            type="text"
-            name="username"
-            value={username}
-            placeholder="Enter username"
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
-
-        <Form.Group className="mb-3" controlId="formLoginPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            required
-            type="password"
-            name="password"
-            value={password}
-            placeholder="Enter password"
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
-
-        <div className="d-grid gap-2">
-          <Button variant="dark" type="submit" size="lg">
-            Submit
-          </Button>
-        </div>
-      </form>
-
-      <hr />
-
-      <Form>
-        <div className="d-grid gap-2">
-          <Button
-            variant="outline-dark"
-            type="submit"
-            size="lg"
-            href="/register"
-          >
-            Create Account
-          </Button>
-        </div>
-      </Form>
-
-      <br />
+    <>
       <div className={styles.message}>
-        {message ? (
-          <Alert variant="dark">
-            <p>{message}</p>
+        {message && showSuccess ? (
+          <Alert
+            variant="success"
+            onClose={() => setShowSuccess(false)}
+            dismissible
+          >
+            <Alert.Heading>{message}</Alert.Heading>
+          </Alert>
+        ) : null}
+        {message && showFailure ? (
+          <Alert
+            variant="danger"
+            onClose={() => setShowFailure(false)}
+            dismissible
+          >
+            <Alert.Heading>{message}</Alert.Heading>
           </Alert>
         ) : null}
       </div>
-    </div>
+
+      <br />
+
+      <div className="login">
+        <h3>Log In</h3>
+        <br />
+
+        <form onSubmit={handleSubmit}>
+          <Form.Group className="mb-3" controlId="formLoginUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control
+              required
+              type="text"
+              name="username"
+              value={username}
+              placeholder="Enter username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formLoginPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control
+              required
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Enter password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <div className="d-grid gap-2">
+            <Button variant="dark" type="submit" size="lg">
+              Submit
+            </Button>
+          </div>
+        </form>
+
+        <hr />
+
+        <Form>
+          <div className="d-grid gap-2">
+            <Button
+              variant="outline-dark"
+              type="submit"
+              size="lg"
+              href="/register"
+            >
+              Create Account
+            </Button>
+          </div>
+        </Form>
+
+        <br />
+      </div>
+    </>
   );
 };
 

@@ -9,15 +9,19 @@ const SearchResults = () => {
   const params = useParams();
 
   //================
-  // Fetch data from API (by specific type)
+  // Fetch requests data from API (by specific type)
   //================
 
   const url = `http://localhost:5001/search/${params.type}`;
 
   const fetchRequests = async () => {
-    const res = await fetch(url);
-    const data = await res.json();
-    setRequests(data);
+    try {
+      const res = await fetch(url);
+      const data = await res.json();
+      setRequests(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   //===========
