@@ -135,7 +135,6 @@ const Tasks = () => {
         })}
       </div>
     </div>
-
   );
 };
 
