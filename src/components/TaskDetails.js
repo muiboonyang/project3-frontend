@@ -29,6 +29,7 @@ const TaskDetails = () => {
       body: JSON.stringify({
         id: params.id,
         accepted: !status,
+        acceptedBy: loginContext.profileName,
       }),
     });
 
@@ -124,13 +125,19 @@ const TaskDetails = () => {
               {taskDetails.completed ? (
                 ""
               ) : loginContext.loggedIn ? (
-                <Button
-                  variant="outline-info"
-                  type="submit"
-                  onClick={updateAcceptance}
-                >
-                  {status ? "Helping Out" : "Help Out"}
-                </Button>
+                (!taskDetails.acceptedBy ||
+                  taskDetails.acceptedBy === loginContext.profileName) &&
+                taskDetails.name !== loginContext.profileName ? (
+                  <Button
+                    variant="outline-info"
+                    type="submit"
+                    onClick={updateAcceptance}
+                  >
+                    {status ? "Helping Out" : "Help Out"}
+                  </Button>
+                ) : (
+                  ""
+                )
               ) : (
                 <NavLink to="/login">
                   <Button variant="outline-info">Help Out</Button>
