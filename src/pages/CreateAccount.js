@@ -73,7 +73,7 @@ const CreateAccount = () => {
             onClose={() => setShowSuccess(false)}
             dismissible
           >
-            <Alert.Heading>{message}</Alert.Heading>
+            {message}
           </Alert>
         ) : null}
         {message && showFailure ? (
@@ -82,7 +82,7 @@ const CreateAccount = () => {
             onClose={() => setShowFailure(false)}
             dismissible
           >
-            <Alert.Heading>{message}</Alert.Heading>
+            {message}
           </Alert>
         ) : null}
       </div>

@@ -93,7 +93,7 @@ const CreateRequest = () => {
             onClose={() => setShowSuccess(false)}
             dismissible
           >
-            <Alert.Heading>{message}</Alert.Heading>
+            {message}
           </Alert>
         ) : null}
         {message && showFailure ? (
@@ -102,10 +102,12 @@ const CreateRequest = () => {
             onClose={() => setShowFailure(false)}
             dismissible
           >
-            <Alert.Heading>{message}</Alert.Heading>
+            {message}
           </Alert>
         ) : null}
       </div>
+
+      <br />
 
       <Row className="mb-3">
         <Form.Group as={Col} className="mb-3" controlId="formIssueType">
@@ -194,10 +196,6 @@ const CreateRequest = () => {
       <Button variant="dark" type="submit" style={{ float: "right" }}>
         Submit
       </Button>
-
-      <br />
-      <br />
-      <br />
     </form>
   );
 };

@@ -42,109 +42,111 @@ const Tasks = () => {
   }, []);
 
   return (
-    <div>
-      {/* <div className={styles.myTask}> */}
-      <p>
-        <h1>My Tasks</h1>
-      </p>
-      <hr></hr>
-      <p>
-        <h3>In Progress</h3>
-      </p>
-      <hr></hr>
-      <div className={styles.container}>
-        {allTasks.map((task, index) => {
-          return !task.completed &&
-            task.acceptedBy === loginContext.profileName ? (
-            <div key={uuidv4()}>
-              <MyTasksCard
-                task={task}
-                index={index}
-                completeTask={completeTask}
-              />
-            </div>
-          ) : (
-            ""
-          );
-        })}
+    <>
+      <br />
+      <div>
+        {/* <div className={styles.myTask}> */}
+        <p>
+          <h1>My Tasks</h1>
+        </p>
+        <hr></hr>
+        <p>
+          <h3>In Progress</h3>
+        </p>
+        <hr></hr>
+        <div className={styles.container}>
+          {allTasks.map((task, index) => {
+            return !task.completed &&
+              task.acceptedBy === loginContext.profileName ? (
+              <div key={uuidv4()}>
+                <MyTasksCard
+                  task={task}
+                  index={index}
+                  completeTask={completeTask}
+                />
+              </div>
+            ) : (
+              ""
+            );
+          })}
+        </div>
+        <p>
+          <h3>Completed</h3>
+        </p>
+        <hr></hr>
+        <div className={styles.container}>
+          {allTasks.map((task) => {
+            return task.completed &&
+              task.acceptedBy === loginContext.profileName ? (
+              <div key={uuidv4()}>
+                <MyTasksCard task={task} />
+              </div>
+            ) : (
+              ""
+            );
+          })}
+          {/* </div> */}
+        </div>
+        {/* <div className={styles.myRequests}> */}
+        <p>
+          <h1>My Requests</h1>
+        </p>
+        <hr></hr>
+        <p>
+          <h3>Pending Acceptance</h3>
+        </p>
+        <hr></hr>
+        <div className={styles.container}>
+          {allTasks.map((task) => {
+            return task.name === loginContext.profileName && !task.accepted ? (
+              <div key={uuidv4()}>
+                <MyTasksCard task={task} />
+              </div>
+            ) : (
+              ""
+            );
+          })}
+        </div>
+        <p>
+          <h3>In Progress</h3>
+        </p>
+        <hr></hr>
+        <div className={styles.container}>
+          {allTasks.map((task, index) => {
+            return task.name === loginContext.profileName &&
+              task.accepted &&
+              !task.completed ? (
+              <div key={uuidv4()} className={styles.container}>
+                <MyTasksCard
+                  task={task}
+                  index={index}
+                  completeTask={completeTask}
+                />
+              </div>
+            ) : (
+              ""
+            );
+          })}
+        </div>
+        <p>
+          <h3>Completed</h3>
+        </p>
+        <hr></hr>
+        <div className={styles.container}>
+          {allTasks.map((task) => {
+            return task.name === loginContext.profileName &&
+              task.accepted &&
+              task.completed ? (
+              <div key={uuidv4()}>
+                <MyTasksCard task={task} />
+              </div>
+            ) : (
+              ""
+            );
+          })}
+        </div>
       </div>
-      <p>
-        <h3>Completed</h3>
-      </p>
-      <hr></hr>
-      <div className={styles.container}>
-        {allTasks.map((task) => {
-          return task.completed &&
-            task.acceptedBy === loginContext.profileName ? (
-            <div key={uuidv4()}>
-              <MyTasksCard task={task} />
-            </div>
-          ) : (
-            ""
-          );
-        })}
-        {/* </div> */}
-      </div>
-      {/* <div className={styles.myRequests}> */}
-      <p>
-        <h1>My Requests</h1>
-      </p>
-      <hr></hr>
-      <p>
-        <h3>Pending Acceptance</h3>
-      </p>
-      <hr></hr>
-      <div className={styles.container}>
-        {allTasks.map((task) => {
-          return task.name === loginContext.profileName && !task.accepted ? (
-            <div key={uuidv4()}>
-              <MyTasksCard task={task} />
-            </div>
-          ) : (
-            ""
-          );
-        })}
-      </div>
-      <p>
-        <h3>In Progress</h3>
-      </p>
-      <hr></hr>
-      <div className={styles.container}>
-        {allTasks.map((task, index) => {
-          return task.name === loginContext.profileName &&
-            task.accepted &&
-            !task.completed ? (
-            <div key={uuidv4()} className={styles.container}>
-              <MyTasksCard
-                task={task}
-                index={index}
-                completeTask={completeTask}
-              />
-            </div>
-          ) : (
-            ""
-          );
-        })}
-      </div>
-      <p>
-        <h3>Completed</h3>
-      </p>
-      <hr></hr>
-      <div className={styles.container}>
-        {allTasks.map((task) => {
-          return task.name === loginContext.profileName &&
-            task.accepted &&
-            task.completed ? (
-            <div key={uuidv4()}>
-              <MyTasksCard task={task} />
-            </div>
-          ) : (
-            ""
-          );
-        })}
-      </div>
-    </div>
-    // </div>
+    </>
   );
 };
 

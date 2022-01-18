@@ -56,7 +56,7 @@ const Login = () => {
             onClose={() => setShowSuccess(false)}
             dismissible
           >
-            <Alert.Heading>{message}</Alert.Heading>
+            {message}
           </Alert>
         ) : null}
         {message && showFailure ? (
@@ -65,7 +65,7 @@ const Login = () => {
             onClose={() => setShowFailure(false)}
             dismissible
           >
-            <Alert.Heading>{message}</Alert.Heading>
+            {message}
           </Alert>
         ) : null}
       </div>

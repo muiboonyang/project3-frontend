@@ -7,7 +7,7 @@ img {
 .carousel {
   text-align: center;
   position: relative;
-  width: 900px;
+  width: 100%;
   margin: auto;
 }
 
