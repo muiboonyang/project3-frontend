@@ -3,7 +3,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Alert from "react-bootstrap/Alert";
-import styles from "./CreateAcount.module.css";
+import styles from "./CreateAccount.module.css";
 
 const CreateAccount = () => {
   const [username, setUsername] = useState("");

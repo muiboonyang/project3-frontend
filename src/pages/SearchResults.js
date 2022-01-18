@@ -15,9 +15,9 @@ const SearchResults = () => {
   const url = `http://localhost:5001/search/${params.type}`;
 
   const fetchRequests = async () => {
-    const res = await fetch(url, {});
-    const rawData = await res.json();
-    setRequests(rawData);
+    const res = await fetch(url);
+    const data = await res.json();
+    setRequests(data);
   };
 
   //===========
@@ -25,7 +25,7 @@ const SearchResults = () => {
   useEffect(() => {
     fetchRequests();
     // eslint-disable-next-line
-  }, []);
+  }, [params.type]);
 
   return (
     <div className={styles.container}>
