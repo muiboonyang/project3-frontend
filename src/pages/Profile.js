@@ -10,64 +10,7 @@ import styles from "./Profile.module.css";
 const Profile = () => {
   const loginContext = useContext(LoginContext);
   const currentUser = loginContext.profileName;
-
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setContact] = useState("");
-  const [address, setAddress] = useState("");
-  const [unit, setUnit] = useState("");
-  const [zipcode, setZipcode] = useState("");
-
-  const [message, setMessage] = useState("");
-  const [showSuccess, setShowSuccess] = useState("");
-  const [showFailure, setShowFailure] = useState("");
-
   const [userInfo, setUserInfo] = useState([]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(`http://localhost:5001/${currentUser}/update`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-          name: name,
-          email: email,
-          contact: contact,
-          address: address,
-          unit: unit,
-          zipcode: zipcode,
-        }),
-      });
-
-      const data = await res.json();
-      console.log(data);
-      if (res.status === 200) {
-        setMessage("Account created!");
-        setShowSuccess(true);
-        setUsername("");
-        setPassword("");
-        setName("");
-        setEmail("");
-        setContact("");
-        setAddress("");
-        setUnit("");
-        setZipcode("");
-      } else {
-        setMessage("Account not created!");
-        setShowFailure(true);
-      }
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   //================
   // Fetch user data from API (by specific username)
@@ -90,25 +33,90 @@ const Profile = () => {
     // eslint-disable-next-line
   }, []);
 
+  //================
+  // Update current user
+  //================
+
+  const [username, setUsername] = useState(userInfo.username);
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState(userInfo.name);
+  const [email, setEmail] = useState(userInfo.email);
+  const [contact, setContact] = useState(userInfo.contact);
+  const [address, setAddress] = useState(userInfo.address);
+  const [unit, setUnit] = useState(userInfo.unit);
+  const [zipcode, setZipcode] = useState(userInfo.zipcode);
+
+  const [successMessage, setSuccessMessage] = useState("");
+  const [failureMessage, setFailureMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        `http://localhost:5001/users/${currentUser}/update`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+            name: name,
+            email: email,
+            contact: contact,
+            address: address,
+            unit: unit,
+            zipcode: zipcode,
+          }),
+        }
+      );
+
+      const data = await res.json();
+      console.log(data);
+
+      if (res.status === 200) {
+        setSuccessMessage("Account updated!");
+        setShowMessage(true);
+        setUsername("");
+        setPassword("");
+        setName("");
+        setEmail("");
+        setContact("");
+        setAddress("");
+        setUnit("");
+        setZipcode("");
+        loginContext.setLoggedIn(false);
+      } else {
+        setFailureMessage("Account not updated!");
+        setShowMessage(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
       <div className={styles.message}>
-        {message && showSuccess ? (
+        {successMessage && showMessage ? (
           <Alert
             variant="success"
-            onClose={() => setShowSuccess(false)}
+            onClose={() => setShowMessage(false)}
             dismissible
           >
-            {message}
+            {successMessage}
           </Alert>
         ) : null}
-        {message && showFailure ? (
+        {failureMessage && showMessage ? (
           <Alert
             variant="danger"
-            onClose={() => setShowFailure(false)}
+            onClose={() => setShowMessage(false)}
             dismissible
           >
-            {message}
+            {failureMessage}
           </Alert>
         ) : null}
       </div>
@@ -121,7 +129,6 @@ const Profile = () => {
           <Form.Group className="mb-3" controlId="formRegisterUsername">
             <Form.Label>Username: </Form.Label>
             <Form.Control
-              required
               type="text"
               name="username"
               value={username}
@@ -131,9 +138,8 @@ const Profile = () => {
           </Form.Group>
 
           <Form.Group className="mb-3" controlId="formRegisterPassword">
-            <Form.Label>Password: {userInfo.password} </Form.Label>
+            <Form.Label>Password: </Form.Label>
             <Form.Control
-              required
               type="password"
               name="password"
               value={password}
@@ -153,7 +159,6 @@ const Profile = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder={userInfo.name}
-                required
               />
             </Form.Group>
           </Row>
@@ -167,7 +172,6 @@ const Profile = () => {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={userInfo.email}
-                required
               />
             </Form.Group>
 
@@ -179,7 +183,6 @@ const Profile = () => {
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
                 placeholder={userInfo.contact}
-                required
               />
             </Form.Group>
           </Row>
@@ -191,7 +194,6 @@ const Profile = () => {
               value={address}
               onChange={(e) => setAddress(e.target.value)}
               placeholder={userInfo.address}
-              required
             />
           </Form.Group>
 
@@ -203,7 +205,6 @@ const Profile = () => {
                 value={unit}
                 onChange={(e) => setUnit(e.target.value)}
                 placeholder={userInfo.unit}
-                required
               />
             </Form.Group>
 
@@ -214,7 +215,6 @@ const Profile = () => {
                 value={zipcode}
                 onChange={(e) => setZipcode(e.target.value)}
                 placeholder={userInfo.zipcode}
-                required
               />
             </Form.Group>
           </Row>
