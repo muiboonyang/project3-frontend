@@ -6,10 +6,14 @@ import Button from "react-bootstrap/Button";
 const MyTasksCard = (props) => {
   return (
     <div className={styles.container}>
-      <NavLink to={`${props.task.type}/${props.task._id}`}>
+      <NavLink to={`search/${props.task.type}/${props.task._id}`}>
         <div className={styles.detailsContainer}>
           <img
-            src={`http://localhost:5001/${props.task.image}`}
+            src={
+              props.task.image.startsWith("http")
+                ? props.task.image
+                : `http://localhost:5001/${props.task.image}`
+            }
             alt={`${props.task.title}`}
           />
           <div>
