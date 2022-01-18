@@ -36,6 +36,8 @@ const Login = () => {
         loginContext.setLoggedIn(true);
         loginContext.setProfileName(data.username);
         setShowSuccess(true);
+        setUsername("");
+        setPassword("");
       } else {
         setMessage("Log in unsuccessful!");
         setShowFailure(true);

@@ -1,25 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import styles from "./CreateRequest.module.css";
+import LoginContext from "../context/login-context";
 
 const CreateRequest = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [contact, setContact] = useState("");
-  const [address, setAddress] = useState("");
-  const [unit, setUnit] = useState("");
-  const [zipcode, setZipcode] = useState("");
+  const loginContext = useContext(LoginContext);
+  const currentUser = loginContext.profileName;
+
   const [type, setType] = useState("");
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
   const [deadline, setDeadline] = useState("");
   const [comments, setComments] = useState("");
-  const [message, setMessage] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
+
+  const [message, setMessage] = useState("");
+  const [showSuccess, setShowSuccess] = useState("");
+  const [showFailure, setShowFailure] = useState("");
 
   const onFileChange = (e) => {
     setSelectedFile(e.target.files[0]);
@@ -31,7 +32,7 @@ const CreateRequest = () => {
       const formData = new FormData();
       formData.append("image", selectedFile);
       console.log(formData);
-      await fetch("http://localhost:5001/requests", {
+      await fetch(`http://localhost:5001/requests/${currentUser}`, {
         method: "POST",
         body: formData,
       });
@@ -41,19 +42,13 @@ const CreateRequest = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5001/requests", {
+      const res = await fetch(`http://localhost:5001/requests/${currentUser}`, {
         method: "POST",
         mode: "cors",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name: name,
-          email: email,
-          contact: contact,
-          address: address,
-          unit: unit,
-          zipcode: zipcode,
           type: type,
           date: date,
           title: title,
@@ -67,9 +62,17 @@ const CreateRequest = () => {
       console.log(data);
 
       if (res.status === 200) {
-        setMessage("Request created successfullly");
+        setMessage("Request created successfully!");
+        setShowSuccess(true);
+        setType("");
+        setDate("");
+        setTitle("");
+        setDeadline("");
+        setComments("");
+        setSelectedFile("");
       } else {
         setMessage("Request creation unsuccessful!");
+        setShowSuccess(true);
       }
     } catch (err) {
       console.log(err);
@@ -78,85 +81,31 @@ const CreateRequest = () => {
 
   return (
     <form
-      onSubmit={() => {
-        handleSubmit();
-        onFileUpload();
+      onSubmit={(e) => {
+        handleSubmit(e);
+        onFileUpload(e);
       }}
     >
-      <Row>
-        <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            type="input"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            placeholder="Enter name"
-            required
-          />
-        </Form.Group>
-      </Row>
-
-      <Row>
-        <Form.Group as={Col} className="mb-3" controlId="formEmail">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Enter email"
-            required
-          />
-        </Form.Group>
-
-        <Form.Group as={Col} className="mb-3" controlId="formNumber">
-          <Form.Label>Contact number</Form.Label>
-          <Form.Control
-            type="number"
-            name="contact"
-            value={contact}
-            onChange={(e) => setContact(e.target.value)}
-            placeholder="Enter contact number"
-            required
-          />
-        </Form.Group>
-      </Row>
-
-      <Form.Group className="mb-3" controlId="formGridAddress">
-        <Form.Label>Address</Form.Label>
-        <Form.Control
-          name="address"
-          value={address}
-          onChange={(e) => setAddress(e.target.value)}
-          placeholder="Enter address"
-          required
-        />
-      </Form.Group>
-
-      <Row className="mb-3">
-        <Form.Group as={Col} className="mb-3" controlId="formGridUnit">
-          <Form.Label>Unit number</Form.Label>
-          <Form.Control
-            name="unit"
-            value={unit}
-            onChange={(e) => setUnit(e.target.value)}
-            placeholder="Enter unit number"
-            required
-          />
-        </Form.Group>
-
-        <Form.Group as={Col} className="mb-3" controlId="formGridZip">
-          <Form.Label>Zip code</Form.Label>
-          <Form.Control
-            name="zipcode"
-            value={zipcode}
-            onChange={(e) => setZipcode(e.target.value)}
-            placeholder="Enter zip code"
-            required
-          />
-        </Form.Group>
-      </Row>
+      <div className={styles.message}>
+        {message && showSuccess ? (
+          <Alert
+            variant="success"
+            onClose={() => setShowSuccess(false)}
+            dismissible
+          >
+            <Alert.Heading>{message}</Alert.Heading>
+          </Alert>
+        ) : null}
+        {message && showFailure ? (
+          <Alert
+            variant="danger"
+            onClose={() => setShowFailure(false)}
+            dismissible
+          >
+            <Alert.Heading>{message}</Alert.Heading>
+          </Alert>
+        ) : null}
+      </div>
 
       <Row className="mb-3">
         <Form.Group as={Col} className="mb-3" controlId="formIssueType">
@@ -170,13 +119,13 @@ const CreateRequest = () => {
             <option value="" hidden>
               Select task type...
             </option>
-            <option name="plumbing" value="Plumbing">
+            <option name="plumbing" value="plumbing">
               Plumbing
             </option>
-            <option name="cleaning" value="Cleaning">
+            <option name="cleaning" value="cleaning">
               Cleaning
             </option>
-            <option name="grocery" value="Grocery">
+            <option name="grocery" value="grocery">
               Grocery
             </option>
           </Form.Select>
@@ -249,13 +198,6 @@ const CreateRequest = () => {
       <br />
       <br />
       <br />
-      <div className={styles.message}>
-        {message ? (
-          <Alert variant="dark">
-            <p>{message}</p>
-          </Alert>
-        ) : null}
-      </div>
     </form>
   );
 };

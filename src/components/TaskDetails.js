@@ -60,6 +60,7 @@ const TaskDetails = () => {
       setStatus(taskDetails.accepted);
       getLocation();
     }
+    // eslint-disable-next-line
   }, [taskDetails]);
 
   const convertToDateFormat = (string) => {
@@ -148,6 +149,7 @@ const TaskDetails = () => {
             {location ? (
               <img
                 src={`https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=night&postal=${taskDetails.zipcode}&zoom=16&height=200&width=200&points=[${location.LATITUDE}, ${location.LONGITUDE},"255,255,255"]&color=&fillColor=`}
+                alt=""
               ></img>
             ) : (
               <p>Please contact requestor for updated location</p>
