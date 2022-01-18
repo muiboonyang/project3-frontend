@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useContext } from "react";
 import LoginContext from "../context/login-context";
-import Tab from "react-bootstrap/Tab";
-import Tabs from "react-bootstrap/Tabs";
+
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import styles from "./Profile.module.css";
 
 const Profile = () => {
-  const [userInfo, setUserInfo] = useState([]);
   const loginContext = useContext(LoginContext);
+  const currentUser = loginContext.profileName;
+  const [userInfo, setUserInfo] = useState([]);
 
   //================
   // Fetch user data from API (by specific username)
   //================
 
-  const currentUser = loginContext.profileName;
   const url = `http://localhost:5001/users/${currentUser}`;
 
   const getUserInfo = async () => {
@@ -30,46 +34,200 @@ const Profile = () => {
     // eslint-disable-next-line
   }, []);
 
+  //================
+  // Update current user
+  //================
+
+  const [username, setUsername] = useState(userInfo.username);
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState(userInfo.name);
+  const [email, setEmail] = useState(userInfo.email);
+  const [contact, setContact] = useState(userInfo.contact);
+  const [address, setAddress] = useState(userInfo.address);
+  const [unit, setUnit] = useState(userInfo.unit);
+  const [zipcode, setZipcode] = useState(userInfo.zipcode);
+
+  const [successMessage, setSuccessMessage] = useState("");
+  const [failureMessage, setFailureMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        `http://localhost:5001/users/${currentUser}/update`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+            name: name,
+            email: email,
+            contact: contact,
+            address: address,
+            unit: unit,
+            zipcode: zipcode,
+          }),
+        }
+      );
+
+      const data = await res.json();
+      console.log(data);
+
+      if (res.status === 200) {
+        setSuccessMessage("Account updated!");
+        setShowMessage(true);
+        setUsername("");
+        setPassword("");
+        setName("");
+        setEmail("");
+        setContact("");
+        setAddress("");
+        setUnit("");
+        setZipcode("");
+        loginContext.setLoggedIn(false);
+      } else {
+        setFailureMessage("Account not updated!");
+        setShowMessage(true);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <>
-      <Tabs defaultActiveKey="1">
-        <Tab eventKey="1" title="Username">
-          Username: {userInfo.username}
-        </Tab>
-        <Tab eventKey="2" title="Name">
-          Name: {userInfo.name}
-        </Tab>
-        <Tab eventKey="3" title="Email">
-          Email: {userInfo.email}
-        </Tab>
-        <Tab eventKey="4" title="Contact">
-          Contact: {userInfo.contact}
-        </Tab>
-        <Tab eventKey="5" title="Address">
-          Address: {userInfo.address}
-        </Tab>
-        <Tab eventKey="6" title="Unit">
-          Unit: {userInfo.unit}
-        </Tab>
-        <Tab eventKey="7" title="Zip-code">
-          Zip-code: {userInfo.zipcode}
-        </Tab>
-        <Tab eventKey="8" title="Reviews">
-          {userInfo.reviews
-            ? userInfo.reviews.map((review) => {
-                return (
-                  <div className={styles.reviewsContainer}>
-                    <h3>{review.review}</h3>
-                    <div>
-                      <i className="fa fa-fw fa-user"></i>
-                      <h6>{review.reviewer}</h6>
-                    </div>
-                  </div>
-                );
-              })
-            : ""}
-        </Tab>
-      </Tabs>
+      <div className={styles.message}>
+        {successMessage && showMessage ? (
+          <Alert
+            variant="success"
+            onClose={() => setShowMessage(false)}
+            dismissible
+          >
+            {successMessage}
+          </Alert>
+        ) : null}
+        {failureMessage && showMessage ? (
+          <Alert
+            variant="danger"
+            onClose={() => setShowMessage(false)}
+            dismissible
+          >
+            {failureMessage}
+          </Alert>
+        ) : null}
+      </div>
+
+      <br />
+
+      <div className={styles.profile}>
+        <form onSubmit={handleSubmit}>
+          <h2>Update Profile</h2>
+          <Form.Group className="mb-3" controlId="formRegisterUsername">
+            <Form.Label>Username: </Form.Label>
+            <Form.Control
+              type="text"
+              name="username"
+              value={username}
+              placeholder={userInfo.username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="formRegisterPassword">
+            <Form.Label>Password: </Form.Label>
+            <Form.Control
+              type="password"
+              name="password"
+              value={password}
+              placeholder="Enter new password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Form.Group>
+
+          <hr />
+
+          <Row>
+            <Form.Group as={Col} className="mb-3" controlId="formGridEmail">
+              <Form.Label>Name: </Form.Label>
+              <Form.Control
+                type="input"
+                name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder={userInfo.name}
+              />
+            </Form.Group>
+          </Row>
+
+          <Row>
+            <Form.Group as={Col} className="mb-3" controlId="formEmail">
+              <Form.Label>Email address: </Form.Label>
+              <Form.Control
+                type="email"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder={userInfo.email}
+              />
+            </Form.Group>
+
+            <Form.Group as={Col} className="mb-3" controlId="formNumber">
+              <Form.Label>Contact number: </Form.Label>
+              <Form.Control
+                type="number"
+                name="contact"
+                value={contact}
+                onChange={(e) => setContact(e.target.value)}
+                placeholder={userInfo.contact}
+              />
+            </Form.Group>
+          </Row>
+
+          <Form.Group className="mb-3" controlId="formGridAddress">
+            <Form.Label>Address: </Form.Label>
+            <Form.Control
+              name="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+              placeholder={userInfo.address}
+            />
+          </Form.Group>
+
+          <Row className="mb-3">
+            <Form.Group as={Col} className="mb-3" controlId="formGridUnit">
+              <Form.Label>Unit number: </Form.Label>
+              <Form.Control
+                name="unit"
+                value={unit}
+                onChange={(e) => setUnit(e.target.value)}
+                placeholder={userInfo.unit}
+              />
+            </Form.Group>
+
+            <Form.Group as={Col} className="mb-3" controlId="formGridZip">
+              <Form.Label>Zip code: </Form.Label>
+              <Form.Control
+                name="zipcode"
+                value={zipcode}
+                onChange={(e) => setZipcode(e.target.value)}
+                placeholder={userInfo.zipcode}
+              />
+            </Form.Group>
+          </Row>
+
+          <Button variant="dark" type="submit" style={{ float: "right" }}>
+            Update
+          </Button>
+        </form>
+      </div>
+      <br />
+      <br />
+      <br />
     </>
   );
 };

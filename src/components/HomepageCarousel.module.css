@@ -7,7 +7,7 @@ img {
 .carousel {
   text-align: center;
   position: relative;
-  width: 900px;
+  width: 100%;
   margin: auto;
 }
 
@@ -16,9 +16,3 @@ img {
   text-decoration: none;
   color: white;
 }
-
-/* .sliderimg {
-  width: 100%;
-  height: 500px;
-  object-fit: cover;
-} */

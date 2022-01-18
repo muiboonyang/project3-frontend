@@ -41,8 +41,7 @@ const Home = () => {
       <div className="carousel">
         <HomepageCarousel></HomepageCarousel>
       </div>
-      <br />
-      <br />
+
       <div className={styles.buttons}>
         <Button onClick={seedTask} variant="dark" type="submit" size="sm">
           Seed Tasks
@@ -57,9 +56,6 @@ const Home = () => {
           Delete Users
         </Button>
       </div>
-      <br />
-      <br />
-      <br />
     </>
   );
 };

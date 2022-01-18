@@ -28,3 +28,8 @@
 .navbar active {
   background-color: #000000;
 }
+
+.message {
+  font-size: 1.2em;
+  text-align: center;
+}

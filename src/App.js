@@ -36,7 +36,6 @@ const App = () => {
     >
       <BrowserRouter>
         <NavBar />
-        <br />
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/search/:type" exact component={SearchResults} />

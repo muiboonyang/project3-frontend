@@ -125,11 +125,10 @@ const NavBar = () => {
         </Navbar>
       </div>
 
-      <br />
       <div className={styles.message}>
         {message && show ? (
           <Alert variant="success" onClose={() => setShow(false)} dismissible>
-            <Alert.Heading>{message}</Alert.Heading>
+            {message}
           </Alert>
         ) : null}
       </div>

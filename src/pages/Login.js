@@ -10,9 +10,10 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [showSuccess, setShowSuccess] = useState("");
-  const [showFailure, setShowFailure] = useState("");
+
+  const [successMessage, setSuccessMessage] = useState("");
+  const [failureMessage, setFailureMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,15 +33,15 @@ const Login = () => {
       const data = await res.json();
 
       if (res.status === 200) {
-        setMessage("Log in successful!");
+        setSuccessMessage("Log in successful!");
         loginContext.setLoggedIn(true);
         loginContext.setProfileName(data.username);
-        setShowSuccess(true);
+        setShowMessage(true);
         setUsername("");
         setPassword("");
       } else {
-        setMessage("Log in unsuccessful!");
-        setShowFailure(true);
+        setFailureMessage("Log in unsuccessful!");
+        setShowMessage(true);
       }
     } catch (err) {
       console.log(err);
@@ -50,22 +51,22 @@ const Login = () => {
   return (
     <>
       <div className={styles.message}>
-        {message && showSuccess ? (
+        {successMessage && showMessage ? (
           <Alert
             variant="success"
-            onClose={() => setShowSuccess(false)}
+            onClose={() => setShowMessage(false)}
             dismissible
           >
-            <Alert.Heading>{message}</Alert.Heading>
+            {successMessage}
           </Alert>
         ) : null}
-        {message && showFailure ? (
+        {failureMessage && showMessage ? (
           <Alert
             variant="danger"
-            onClose={() => setShowFailure(false)}
+            onClose={() => setShowMessage(false)}
             dismissible
           >
-            <Alert.Heading>{message}</Alert.Heading>
+            {failureMessage}
           </Alert>
         ) : null}
       </div>
