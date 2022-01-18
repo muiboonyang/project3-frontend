@@ -54,25 +54,41 @@ const NavBar = () => {
 
               <Dropdown.Menu variant="dark">
                 <Link to="/search/all">
-                  <Dropdown.Item className={styles.dropdown} value="all">
+                  <Dropdown.Item
+                    as="button"
+                    className={styles.dropdown}
+                    value="all"
+                  >
                     <i className="fa fa-fw fa-thumb-tack"></i> All tasks
                   </Dropdown.Item>
                 </Link>
 
                 <Link to="/search/plumbing">
-                  <Dropdown.Item className={styles.dropdown} value="plumbing">
+                  <Dropdown.Item
+                    as="button"
+                    className={styles.dropdown}
+                    value="plumbing"
+                  >
                     <i className="fa fa-fw fa-tint"></i> Plumbing
                   </Dropdown.Item>
                 </Link>
 
                 <Link to="/search/cleaning">
-                  <Dropdown.Item className={styles.dropdown} value="cleaning">
+                  <Dropdown.Item
+                    as="button"
+                    className={styles.dropdown}
+                    value="cleaning"
+                  >
                     <i className="fa fa-fw fa-shower"></i> Cleaning
                   </Dropdown.Item>
                 </Link>
 
                 <Link to="/search/grocery">
-                  <Dropdown.Item className={styles.dropdown} value="grocery">
+                  <Dropdown.Item
+                    as="button"
+                    className={styles.dropdown}
+                    value="grocery"
+                  >
                     <i className="fa fa-fw fa-shopping-cart"></i> Grocery
                   </Dropdown.Item>
                 </Link>
