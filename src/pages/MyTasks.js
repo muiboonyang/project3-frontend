@@ -43,8 +43,15 @@ const Tasks = () => {
 
   return (
     <div>
-      <h1>My Tasks</h1>
-      <h3>In Progress</h3>
+      {/* <div className={styles.myTask}> */}
+      <p>
+        <h1>My Tasks</h1>
+      </p>
+      <hr></hr>
+      <p>
+        <h3>In Progress</h3>
+      </p>
+      <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task, index) => {
           return !task.completed &&
@@ -61,7 +68,10 @@ const Tasks = () => {
           );
         })}
       </div>
-      <h3>Completed</h3>
+      <p>
+        <h3>Completed</h3>
+      </p>
+      <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task) => {
           return task.completed &&
@@ -73,9 +83,17 @@ const Tasks = () => {
             ""
           );
         })}
+        {/* </div> */}
       </div>
-      <h1>My Requests</h1>
-      <h3>Pending Acceptance</h3>
+      {/* <div className={styles.myRequests}> */}
+      <p>
+        <h1>My Requests</h1>
+      </p>
+      <hr></hr>
+      <p>
+        <h3>Pending Acceptance</h3>
+      </p>
+      <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task) => {
           return task.name === loginContext.profileName && !task.accepted ? (
@@ -87,7 +105,10 @@ const Tasks = () => {
           );
         })}
       </div>
-      <h3>In Progress</h3>
+      <p>
+        <h3>In Progress</h3>
+      </p>
+      <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task, index) => {
           return task.name === loginContext.profileName &&
@@ -105,8 +126,10 @@ const Tasks = () => {
           );
         })}
       </div>
-
-      <h3>Completed</h3>
+      <p>
+        <h3>Completed</h3>
+      </p>
+      <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task) => {
           return task.name === loginContext.profileName &&
@@ -121,6 +144,7 @@ const Tasks = () => {
         })}
       </div>
     </div>
+    // </div>
   );
 };
 
