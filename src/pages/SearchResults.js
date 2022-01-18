@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react";
-import CardTask from "../components/CardTask";
 import { useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import SearchCard from "../components/SearchCard.js";
 import styles from "./SearchResults.module.css";
-
 
 const SearchResults = () => {
   const [requests, setRequests] = useState([]);
