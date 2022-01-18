@@ -10,7 +10,7 @@ import styles from "./NavBar.module.css";
 const NavBar = () => {
   const loginContext = useContext(LoginContext);
   const [message, setMessage] = useState("");
-  const [show, setShow] = useState();
+  const [show, setShow] = useState("");
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -107,7 +107,7 @@ const NavBar = () => {
                   My Tasks
                 </Link>
 
-                <Link to="/mytasks">
+                <Link to="/profile">
                   <i className="fa fa-fw fa-user"></i>
                   {loginContext.profileName}
                 </Link>

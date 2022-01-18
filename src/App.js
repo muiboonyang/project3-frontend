@@ -12,6 +12,7 @@ import TaskDetails from "./components/TaskDetails";
 import MyTasks from "./pages/MyTasks";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -38,12 +39,18 @@ const App = () => {
         <br />
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/createrequest" exact component={CreateRequest} />
           <Route path="/search/:type" exact component={SearchResults} />
-          <Route path="/mytasks" exact component={MyTasks} />
-          <Route path="/search/:type/:id" exact component={TaskDetails} />
           <Route path="/register" exact component={CreateAccount} />
+          <Route path="/search/:type/:id" exact component={TaskDetails} />
           <Route path="/login" exact component={Login} />
+
+          {loggedIn ? (
+            <Switch>
+              <Route path="/profile" exact component={Profile} />
+              <Route path="/createrequest" exact component={CreateRequest} />
+              <Route path="/mytasks" exact component={MyTasks} />
+            </Switch>
+          ) : null}
         </Switch>
       </BrowserRouter>
     </LoginContext.Provider>
