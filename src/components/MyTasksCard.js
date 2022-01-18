@@ -1,29 +1,46 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import styles from "./MyTasksCard.module.css";
+import Button from "react-bootstrap/Button";
 
 const MyTasksCard = (props) => {
   return (
-    <>
-      <p>
-        <a href={`/search/${props.task.type}/${props.task._id}`}>
-          {props.task.title}
-        </a>
-      </p>
+    <div className={styles.container}>
+      <NavLink to={`search/${props.task.type}/${props.task._id}`}>
+        <div className={styles.detailsContainer}>
+          <img
+            src={
+              props.task.image.startsWith("http")
+                ? props.task.image
+                : `http://localhost:5001/${props.task.image}`
+            }
+            alt={`${props.task.title}`}
+          />
+          <div>
+            <h6>{props.task.name}</h6>
+            <h3>{props.task.title}</h3>
+          </div>
+        </div>
+      </NavLink>
       {props.task.accepted && !props.task.completed ? (
-        <button
-          onClick={() =>
-            props.completeTask(
-              props.task._id,
-              !props.task.completed,
-              props.index
-            )
-          }
-        >
-          Complete
-        </button>
+        <div className={styles.bottomContainer}>
+          <Button
+            variant="outline-dark"
+            onClick={() =>
+              props.completeTask(
+                props.task._id,
+                !props.task.completed,
+                props.index
+              )
+            }
+          >
+            Complete
+          </Button>
+        </div>
       ) : (
         ""
       )}
-    </>
+    </div>
   );
 };
 

@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Card from "react-bootstrap/Card";
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, NavLink } from "react-router-dom";
+import LoginContext from "../context/login-context";
+import styles from "./TaskDetails.module.css";
 import Button from "react-bootstrap/Button";
 
 const TaskDetails = () => {
   const [taskDetails, setTaskDetails] = useState(null);
   const [status, setStatus] = useState(null);
+  const [location, setLocation] = useState(null);
+  const loginContext = useContext(LoginContext);
   const params = useParams();
 
   const fetchTaskDetails = async () => {
@@ -14,8 +17,6 @@ const TaskDetails = () => {
     );
     const data = await res.json();
     setTaskDetails(data);
-    console.log(data);
-
   };
 
   const updateAcceptance = async () => {
@@ -33,8 +34,19 @@ const TaskDetails = () => {
 
     const data = await res.json();
     console.log(data);
-
     setStatus(!status);
+  };
+
+  const getLocation = async () => {
+    try {
+      const res = await fetch(
+        `https://developers.onemap.sg/commonapi/search?searchVal=${taskDetails.zipcode}&returnGeom=Y&getAddrDetails=Y`
+      );
+      const data = await res.json();
+      setLocation(data.results[0]);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
@@ -45,6 +57,7 @@ const TaskDetails = () => {
   useEffect(() => {
     if (taskDetails) {
       setStatus(taskDetails.accepted);
+      getLocation();
     }
   }, [taskDetails]);
 
@@ -73,32 +86,71 @@ const TaskDetails = () => {
   };
 
   return (
-
-    <div>
+    <>
       {taskDetails ? (
-        <Card>
-          <Card.Title>{taskDetails.title}</Card.Title>
-          <Card.Text>
-            {taskDetails.type.charAt(0).toUpperCase() +
-              taskDetails.type.slice(1)}
-          </Card.Text>
-          <a href={`mailto:${taskDetails.email}`}>{taskDetails.name}</a>
-          <p>{taskDetails.contact}</p>
-          <p>Date of request: {convertToDateFormat(taskDetails.date)}</p>
-          <p>Required by: {convertToDateFormat(taskDetails.deadline)}</p>
-          <p>Comments: {taskDetails.comments}</p>
-          {taskDetails.completed ? (
-            ""
-          ) : (
-            <Button type="submit" onClick={updateAcceptance}>
-              {status ? "HELPED" : "HELP"}
-            </Button>
-          )}
-        </Card>
+        <div className={styles.container}>
+          <div className={styles.detailsContainer}>
+            <h5>{taskDetails.title}</h5>
+            <div className={styles.subheading}>
+              <h6>
+                {taskDetails.type.charAt(0).toUpperCase() +
+                  taskDetails.type.slice(1)}
+              </h6>
+              <h6>{convertToDateFormat(taskDetails.date)}</h6>
+            </div>
+
+            <img
+              src={
+                taskDetails.image.startsWith("http")
+                  ? taskDetails.image
+                  : `http://localhost:5001/${taskDetails.image}`
+              }
+              alt={`${taskDetails.title}`}
+            />
+
+            <p>Required by: {convertToDateFormat(taskDetails.deadline)}</p>
+            <div className={styles.details}>
+              <h6>About this request:</h6>
+              {taskDetails.comments}
+            </div>
+          </div>
+          <div className={styles.rightColumn}>
+            <div className={styles.contactContainer}>
+              <p> {taskDetails.name}</p>
+              <a href={`mailto:${taskDetails.email}`}>
+                <div>Chat</div>
+              </a>
+
+              {taskDetails.completed ? (
+                ""
+              ) : loginContext.loggedIn ? (
+                <Button
+                  variant="outline-info"
+                  type="submit"
+                  onClick={updateAcceptance}
+                >
+                  {status ? "Helping Out" : "Help Out"}
+                </Button>
+              ) : (
+                <NavLink to="/login">
+                  <Button variant="outline-info">Help Out</Button>
+                </NavLink>
+              )}
+            </div>
+
+            {location ? (
+              <img
+                src={`https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=night&postal=${taskDetails.zipcode}&zoom=16&height=200&width=200&points=[${location.LATITUDE}, ${location.LONGITUDE},"255,255,255"]&color=&fillColor=`}
+              ></img>
+            ) : (
+              <p>Please contact requestor for updated location</p>
+            )}
+          </div>
+        </div>
       ) : (
         ""
       )}
-    </div>
+    </>
   );
 };
 

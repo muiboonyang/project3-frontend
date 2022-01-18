@@ -1,7 +1,8 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 // import styles from "./Home.module.css";
-
+import HomepageCarousel from "../components/HomepageCarousel";
+//imported the HomepageCarousel to home.js so it's viewable
 const Home = () => {
   const seedTask = async () => {
     try {
@@ -36,8 +37,11 @@ const Home = () => {
   };
 
   return (
+
     <div className="home">
       <h3>Home</h3>
+      <br />
+      <HomepageCarousel></HomepageCarousel>
       <br />
       <Button onClick={seedTask} variant="primary" type="submit">
         Seed Tasks
