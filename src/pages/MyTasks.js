@@ -7,6 +7,7 @@ import styles from "./MyTasks.module.css";
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([]);
   const [allStatuses, setAllStatuses] = useState([]);
+  const [review, setReview] = useState("");
   const loginContext = useContext(LoginContext);
 
   const fetchAllTasks = async () => {
@@ -39,18 +40,13 @@ const Tasks = () => {
 
   useEffect(() => {
     fetchAllTasks();
-  }, []);
+  }, [review]);
 
   return (
     <div>
-      {/* <div className={styles.myTask}> */}
-      <p>
-        <h1>My Tasks</h1>
-      </p>
+      <h1>My Tasks</h1>
       <hr></hr>
-      <p>
-        <h3>In Progress</h3>
-      </p>
+      <h3>In Progress</h3>
       <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task, index) => {
@@ -68,9 +64,9 @@ const Tasks = () => {
           );
         })}
       </div>
-      <p>
-        <h3>Completed</h3>
-      </p>
+
+      <h3>Completed</h3>
+
       <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task) => {
@@ -83,20 +79,17 @@ const Tasks = () => {
             ""
           );
         })}
-        {/* </div> */}
       </div>
-      {/* <div className={styles.myRequests}> */}
-      <p>
-        <h1>My Requests</h1>
-      </p>
+      <br />
+      <h1>My Requests</h1>
       <hr></hr>
-      <p>
-        <h3>Pending Acceptance</h3>
-      </p>
+
+      <h3>Pending Acceptance</h3>
       <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task) => {
-          return task.name === loginContext.profileName && !task.accepted ? (
+          return task.username === loginContext.profileName &&
+            !task.accepted ? (
             <div key={uuidv4()}>
               <MyTasksCard task={task} />
             </div>
@@ -105,13 +98,12 @@ const Tasks = () => {
           );
         })}
       </div>
-      <p>
-        <h3>In Progress</h3>
-      </p>
+
+      <h3>In Progress</h3>
       <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task, index) => {
-          return task.name === loginContext.profileName &&
+          return task.username === loginContext.profileName &&
             task.accepted &&
             !task.completed ? (
             <div key={uuidv4()} className={styles.container}>
@@ -126,17 +118,16 @@ const Tasks = () => {
           );
         })}
       </div>
-      <p>
-        <h3>Completed</h3>
-      </p>
+
+      <h3>Completed</h3>
       <hr></hr>
       <div className={styles.container}>
         {allTasks.map((task) => {
-          return task.name === loginContext.profileName &&
+          return task.username === loginContext.profileName &&
             task.accepted &&
             task.completed ? (
             <div key={uuidv4()}>
-              <MyTasksCard task={task} />
+              <MyTasksCard task={task} setReview={setReview} />
             </div>
           ) : (
             ""
@@ -144,7 +135,6 @@ const Tasks = () => {
         })}
       </div>
     </div>
-    // </div>
   );
 };
 
