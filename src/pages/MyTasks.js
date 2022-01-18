@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MyTasksCard from "../components/MyTasksCard";
 import { v4 as uuidv4 } from "uuid";
+import styles from "./MyTasks.module.css";
 
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([]);
@@ -41,74 +42,78 @@ const Tasks = () => {
   return (
     <div>
       <h1>My Tasks</h1>
-
       <h3>In Progress</h3>
-      {allTasks.map((task, index) => {
-        return task.accepted && !task.completed ? (
-          <div key={uuidv4()}>
-            <MyTasksCard
-              task={task}
-              index={index}
-              completeTask={completeTask}
-            />
-          </div>
-        ) : (
-          ""
-        );
-      })}
-
-      <br />
+      <div className={styles.container}>
+        {allTasks.map((task, index) => {
+          return task.accepted && !task.completed ? (
+            <div key={uuidv4()}>
+              <MyTasksCard
+                task={task}
+                index={index}
+                completeTask={completeTask}
+              />
+            </div>
+          ) : (
+            ""
+          );
+        })}
+      </div>
       <h3>Completed</h3>
-      {allTasks.map((task) => {
-        return task.accepted && task.completed ? (
-          <div key={uuidv4()}>
-            <MyTasksCard task={task} />
-          </div>
-        ) : (
-          ""
-        );
-      })}
-
-      <hr />
+      <div className={styles.container}>
+        {allTasks.map((task) => {
+          return task.accepted && task.completed ? (
+            <div key={uuidv4()}>
+              <MyTasksCard task={task} />
+            </div>
+          ) : (
+            ""
+          );
+        })}
+      </div>
       <h1>My Requests</h1>
-
       <h3>Pending Acceptance</h3>
-      {allTasks.map((task) => {
-        return task.name === "Jeng Mun" && !task.accepted ? (
-          <div key={uuidv4()}>
-            <MyTasksCard task={task} />
-          </div>
-        ) : (
-          ""
-        );
-      })}
-
+      <div className={styles.container}>
+        {allTasks.map((task) => {
+          return task.name === "Jeng Mun" && !task.accepted ? (
+            <div key={uuidv4()}>
+              <MyTasksCard task={task} />
+            </div>
+          ) : (
+            ""
+          );
+        })}
+      </div>
       <h3>In Progress</h3>
-      {allTasks.map((task, index) => {
-        return task.name === "Jeng Mun" && task.accepted && !task.completed ? (
-          <div key={uuidv4()}>
-            <MyTasksCard
-              task={task}
-              index={index}
-              completeTask={completeTask}
-            />
-          </div>
-        ) : (
-          ""
-        );
-      })}
+      <div className={styles.container}>
+        {allTasks.map((task, index) => {
+          return task.name === "Jeng Mun" &&
+            task.accepted &&
+            !task.completed ? (
+            <div key={uuidv4()} className={styles.container}>
+              <MyTasksCard
+                task={task}
+                index={index}
+                completeTask={completeTask}
+              />
+            </div>
+          ) : (
+            ""
+          );
+        })}
+      </div>
 
-      <br />
       <h3>Completed</h3>
-      {allTasks.map((task) => {
-        return task.name === "Jeng Mun" && task.accepted && task.completed ? (
-          <div key={uuidv4()}>
-            <MyTasksCard task={task} />
-          </div>
-        ) : (
-          ""
-        );
-      })}
+      <div className={styles.container}>
+        {allTasks.map((task) => {
+          return task.name === "Jeng Mun" && task.accepted && task.completed ? (
+            <div key={uuidv4()}>
+              <MyTasksCard task={task} />
+            </div>
+          ) : (
+            ""
+          );
+        })}
+      </div>
     </div>
   );
 };
