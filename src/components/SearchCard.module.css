@@ -1,18 +1,17 @@
-.container {
+.detailsContainer {
   display: flex;
   flex-direction: column;
   width: 16rem;
   height: 16rem;
-  transition: transform 0.5s;
   border: 0.5px solid grey;
   box-sizing: content-box;
 }
-.container img {
+.detailsContainer img {
   width: 100%;
-  height: auto;
+  height: 70%;
 }
 
-.container div {
+.detailsContainer div {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
@@ -21,13 +20,17 @@
   overflow: hidden;
 }
 
-.container h3,
+.detailsContainer h3,
 h6 {
   color: grey;
 }
 
-.container h3 {
+.detailsContainer h3 {
   text-align: center;
+}
+
+.container {
+  transition: transform 0.5s;
 }
 
 .container a {

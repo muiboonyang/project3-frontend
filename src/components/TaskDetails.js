@@ -6,6 +6,7 @@ import styles from "./TaskDetails.module.css";
 const TaskDetails = () => {
   const [taskDetails, setTaskDetails] = useState(null);
   const [status, setStatus] = useState(null);
+  const [location, setLocation] = useState(null);
   const params = useParams();
 
   const fetchTaskDetails = async () => {
@@ -36,6 +37,14 @@ const TaskDetails = () => {
     setStatus(!status);
   };
 
+  const getLocation = async () => {
+    const res = await fetch(
+      `https://developers.onemap.sg/commonapi/search?searchVal=${taskDetails.zipcode}&returnGeom=Y&getAddrDetails=Y`
+    );
+    const data = await res.json();
+    setLocation(data.results[0]);
+  };
+
   useEffect(() => {
     fetchTaskDetails();
     // eslint-disable-next-line
@@ -44,6 +53,7 @@ const TaskDetails = () => {
   useEffect(() => {
     if (taskDetails) {
       setStatus(taskDetails.accepted);
+      getLocation();
     }
   }, [taskDetails]);
 
@@ -96,22 +106,30 @@ const TaskDetails = () => {
               {taskDetails.comments}
             </div>
           </div>
-
-          <div className={styles.contactContainer}>
-            <p> {taskDetails.name}</p>
-            <a href={`mailto:${taskDetails.email}`}>
-              <div>Chat</div>
-            </a>
-            {taskDetails.completed ? (
-              ""
+          <div className={styles.rightColumn}>
+            <div className={styles.contactContainer}>
+              <p> {taskDetails.name}</p>
+              <a href={`mailto:${taskDetails.email}`}>
+                <div>Chat</div>
+              </a>
+              {taskDetails.completed ? (
+                ""
+              ) : (
+                <Button
+                  variant="outline-info"
+                  type="submit"
+                  onClick={updateAcceptance}
+                >
+                  {status ? "Helping Out" : "Help Out"}
+                </Button>
+              )}
+            </div>
+            {location ? (
+              <img
+                src={`https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=night&postal=${taskDetails.zipcode}&zoom=16&height=200&width=200&points=[${location.LATITUDE}, ${location.LONGITUDE},"255,255,255"]&color=&fillColor=`}
+              ></img>
             ) : (
-              <Button
-                variant="outline-info"
-                type="submit"
-                onClick={updateAcceptance}
-              >
-                {status ? "Helping Out" : "Help Out"}
-              </Button>
+              ""
             )}
           </div>
         </div>
