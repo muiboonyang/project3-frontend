@@ -26,14 +26,16 @@ const CreateRequest = () => {
   };
 
   const onFileUpload = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", selectedFile);
-    console.log(formData);
-    await fetch("http://localhost:5001/requests", {
-      method: "POST",
-      body: formData,
-    });
+    if (selectedFile) {
+      e.preventDefault();
+      const formData = new FormData();
+      formData.append("image", selectedFile);
+      console.log(formData);
+      await fetch("http://localhost:5001/requests", {
+        method: "POST",
+        body: formData,
+      });
+    }
   };
 
   const handleSubmit = async (e) => {
