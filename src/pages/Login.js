@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
 import styles from "./Login.module.css";
-import PropTypes from "prop-types";
 
-const Login = ({ setToken }) => {
+const Login = () => {
+  const loginContext = useContext(LoginContext);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -28,10 +28,11 @@ const Login = ({ setToken }) => {
       });
 
       const data = await res.json();
-      console.log(data);
 
       if (res.status === 200) {
         setMessage("Log in successful!");
+        loginContext.setLoggedIn(true);
+        loginContext.setProfileName(data.username);
       } else {
         setMessage("Log in unsuccessful!");
       }
@@ -70,33 +71,8 @@ const Login = ({ setToken }) => {
           />
         </Form.Group>
 
-        <Row className="mb-3">
-          <Form.Group as={Col} className="mb-3" id="formGridCheckbox">
-            <Form.Check type="checkbox" label="Remember me" />
-          </Form.Group>
-
-          <Form.Group as={Col} className="mb-3" id="formGridForgotPw">
-            <Form.Text className="text-muted" style={{ float: "right" }}>
-              <i>
-                <a
-                  href="https://www.google.com/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Forgot password?
-                </a>
-              </i>
-            </Form.Text>
-          </Form.Group>
-        </Row>
-
         <div className="d-grid gap-2">
-          <Button
-            variant="dark"
-            type="submit"
-            size="lg"
-            // onClick={props.handleLogin}
-          >
+          <Button variant="dark" type="submit" size="lg">
             Submit
           </Button>
         </div>
@@ -118,7 +94,6 @@ const Login = ({ setToken }) => {
       </Form>
 
       <br />
-
       <div className={styles.message}>
         {message ? (
           <Alert variant="dark">
@@ -128,10 +103,6 @@ const Login = ({ setToken }) => {
       </div>
     </div>
   );
-};
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
 };
 
 export default Login;
