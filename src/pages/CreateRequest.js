@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
@@ -68,7 +67,7 @@ const CreateRequest = () => {
         setTitle("");
         setDeadline("");
         setComments("");
-        setSelectedFile("");
+        setSelectedFile(null);
       } else {
         setFailureMessage("Request creation unsuccessful!");
         setShowMessage(true);
@@ -79,7 +78,14 @@ const CreateRequest = () => {
   };
 
   return (
-    <>
+    <form
+      onSubmit={(e) => {
+        handleSubmit(e);
+        onFileUpload(e);
+      }}
+      className={styles.form}
+    >
+
       <div className={styles.message}>
         {successMessage && showMessage ? (
           <Alert
@@ -100,8 +106,6 @@ const CreateRequest = () => {
           </Alert>
         ) : null}
       </div>
-
-      <br />
 
       <div className={styles.createRequest}>
         <h3>Create Request</h3>
@@ -125,14 +129,14 @@ const CreateRequest = () => {
                 <option value="" hidden>
                   Select task type...
                 </option>
-                <option name="plumbing" value="plumbing">
-                  Plumbing
+                <option name="business" value="business">
+                  Business
                 </option>
-                <option name="cleaning" value="cleaning">
-                  Cleaning
+                <option name="lifestyle" value="lifestyle">
+                  Lifestyle
                 </option>
-                <option name="grocery" value="grocery">
-                  Grocery
+                <option name="homeservices" value="homeservices">
+                  Home Services
                 </option>
               </Form.Select>
             </Form.Group>
@@ -197,9 +201,9 @@ const CreateRequest = () => {
             </Form.Group>
           </Row>
 
-          <Button variant="dark" type="submit" style={{ float: "right" }}>
+          <button className={styles.btn} type="submit"}>
             Submit
-          </Button>
+          </button>
         </form>
       </div>
     </>

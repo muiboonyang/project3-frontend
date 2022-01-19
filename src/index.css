@@ -1,20 +1,18 @@
-@import url("https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap");
+@font-face {
+  font-family: "Charlotte";
+  src: url("./fonts/Charlotte/Charlotte.otf");
+}
 
 * {
   box-sizing: border-box;
 }
 
-html {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-h1 {
-  font-family: "Oxygen", sans-serif;
-}
-
 body {
-  margin: 0 50px;
-  background-color: whitesmoke;
+  /* margin: 0 50px; */
+  background: linear-gradient(to bottom, rgb(53, 53, 53), rgb(10, 10, 10));
+  color: white;
+  font-family: "Charlotte";
+  background-attachment: fixed;
 }
 
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */

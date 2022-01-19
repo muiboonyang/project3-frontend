@@ -1,4 +1,4 @@
-import { Link, Redirect } from "react-router-dom";
+import { NavLink, Link , Redirect} from "react-router-dom";
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
@@ -37,62 +37,43 @@ const NavBar = () => {
   return (
     <>
       <div className={styles.navbar}>
-        <Navbar bg="dark" variant="dark">
+        <Navbar>
           <Navbar.Brand>
-            <Link to="/">
+            <NavLink to="/" exact activeClassName={styles.active}>
               <b>
                 <i className="fa fa-fw fa-tasks"></i> Task App
               </b>
-            </Link>
+            </NavLink>
           </Navbar.Brand>
 
           <Nav className="me-auto">
             <Dropdown>
-              <Dropdown.Toggle
-                id="dropdown-button-dark-example1"
-                variant="dark"
-              >
+              <Dropdown.Toggle variant={"warning"}>
                 <i className="fa fa-fw fa-search"></i> Search Category
               </Dropdown.Toggle>
 
-              <Dropdown.Menu variant="dark">
+              <Dropdown.Menu variant="dark" className={styles.dropdown}>
                 <Link to="/search/all">
-                  <Dropdown.Item
-                    as="button"
-                    className={styles.dropdown}
-                    value="all"
-                  >
+                  <Dropdown.Item as="button" value="all">
                     <i className="fa fa-fw fa-thumb-tack"></i> All tasks
                   </Dropdown.Item>
                 </Link>
 
-                <Link to="/search/plumbing">
-                  <Dropdown.Item
-                    as="button"
-                    className={styles.dropdown}
-                    value="plumbing"
-                  >
-                    <i className="fa fa-fw fa-tint"></i> Plumbing
+                <Link to="/search/business">
+                  <Dropdown.Item as="button" value="business">
+                    <i className="fa fa-fw fa-tint"></i> Business 
                   </Dropdown.Item>
                 </Link>
 
-                <Link to="/search/cleaning">
-                  <Dropdown.Item
-                    as="button"
-                    className={styles.dropdown}
-                    value="cleaning"
-                  >
-                    <i className="fa fa-fw fa-shower"></i> Cleaning
+                <Link to="/search/lifestyle">
+                  <Dropdown.Item as="button" value="lifestyle">
+                    <i className="fa fa-fw fa-shower"></i> Lifestyle
                   </Dropdown.Item>
                 </Link>
 
-                <Link to="/search/grocery">
-                  <Dropdown.Item
-                    as="button"
-                    className={styles.dropdown}
-                    value="grocery"
-                  >
-                    <i className="fa fa-fw fa-shopping-cart"></i> Grocery
+                <Link to="/search/homeservices">
+                  <Dropdown.Item as="button" value="homeservices">
+                    <i className="fa fa-fw fa-shopping-cart"></i> Home Services
                   </Dropdown.Item>
                 </Link>
               </Dropdown.Menu>
@@ -101,28 +82,28 @@ const NavBar = () => {
 
           <Nav>
             {loginContext.profileName ? (
-              <>
-                <Link to="/createrequest">
+              <div className={styles.loggedInContainer}>
+                <NavLink to="/createrequest" activeClassName={styles.active}>
                   <i className="fa fa-fw fa-envelope"></i> Create New Request
-                </Link>
-                <Link to="/mytasks">
+                </NavLink>
+                <NavLink to="/mytasks" activeClassName={styles.active}>
                   <i className="fa fa-fw fa-list"></i>
                   My Tasks
-                </Link>
+                </NavLink>
 
-                <Link to="/profile">
+                <NavLink to="/profile" activeClassName={styles.active}>
                   <i className="fa fa-fw fa-user"></i>
                   {loginContext.profileName}
-                </Link>
+                </NavLink>
 
-                <Link onClick={handleLogout} to="/">
+                <NavLink onClick={handleLogout} to="/">
                   <i className="fa fa-fw fa-sign-out"></i>
-                </Link>
-              </>
+                </NavLink>
+              </div>
             ) : (
-              <Link to="/login">
+              <NavLink to="/login" activeClassName={styles.active}>
                 <i className="fa fa-fw fa-user"></i> Log In
-              </Link>
+              </NavLink>
             )}
           </Nav>
         </Navbar>

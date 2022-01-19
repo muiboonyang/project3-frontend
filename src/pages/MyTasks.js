@@ -43,8 +43,7 @@ const Tasks = () => {
   }, [review]);
 
   return (
-    <div>
-      <br />
+    <div className={styles.main}>
       <h1>My Tasks</h1>
       <hr></hr>
       <h3>In Progress</h3>

@@ -1,7 +1,25 @@
+.form {
+  padding: 10px 20px;
+}
 .message {
   font-size: 1.2em;
   text-align: center;
 }
+
+.btn {
+  background-color: rgba(27, 27, 27, 0);
+  border: 1px solid rgb(197, 195, 84);
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "Charlotte";
+  text-transform: uppercase;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(197, 195, 84);
+  color: black;
 
 .createRequest {
   margin: auto;

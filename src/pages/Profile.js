@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Redirect } from "react-router-dom";
 import LoginContext from "../context/login-context";
-
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -213,9 +212,9 @@ const Profile = () => {
             </Form.Group>
           </Row>
 
-          <Button variant="dark" type="submit" style={{ float: "right" }}>
+          <button type="submit" className={styles.btn}>
             Update
-          </Button>
+          </button>
         </form>
       </div>
       <br />

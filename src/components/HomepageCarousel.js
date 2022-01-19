@@ -31,18 +31,18 @@ const HomepageCarousel = () => {
         </Carousel.Item>
 
         <Carousel.Item interval={5000}>
-          <NavLink to="/search/cleaning">
+          <NavLink to="/search/business">
             <img
               controls={false}
               fade="true"
               indicators="false"
               className="d-block w-100"
               src="https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              alt="Cleaning"
+              alt="Business"
             />
 
             <Carousel.Caption className={styles.carouselCaption}>
-              <h3>Cleaning</h3>
+              <h3>Business</h3>
               <p>
                 Want to make someone's day?{" "}
                 <i class="fa fa-heart" aria-hidden="true"></i>
@@ -51,20 +51,21 @@ const HomepageCarousel = () => {
               </p>
             </Carousel.Caption>
           </NavLink>
+
         </Carousel.Item>
 
         <Carousel.Item interval={5000}>
-          <NavLink to="/search/plumbing">
+          <NavLink to="/search/lifestyle">
             <img
               controls={false}
               fade="true"
               indicators="false"
               className="d-block w-100"
               src="https://images.pexels.com/photos/9756161/pexels-photo-9756161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              alt="Plumbing"
+              alt="Lifestyle"
             />
             <Carousel.Caption className={styles.carouselCaption}>
-              <h3>Plumbing</h3>
+              <h3>Lifestyle</h3>
               <p>
                 Want to make someone's day?{" "}
                 <i class="fa fa-heart" aria-hidden="true"></i>
@@ -75,17 +76,17 @@ const HomepageCarousel = () => {
           </NavLink>
         </Carousel.Item>
         <Carousel.Item interval={5000}>
-          <NavLink to="/search/grocery">
+          <NavLink to="/search/homeservices">
             <img
               controls={false}
               fade="true"
               indicators="false"
               className="d-block w-100"
               src="https://images.pexels.com/photos/3687999/pexels-photo-3687999.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              alt="Grocery"
+              alt="Home Services"
             />
             <Carousel.Caption className={styles.carouselCaption}>
-              <h3>Grocery</h3>
+              <h3>Home Services</h3>
               <p>
                 Want to make someone's day?{" "}
                 <i class="fa fa-heart" aria-hidden="true"></i>
