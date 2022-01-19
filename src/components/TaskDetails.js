@@ -29,7 +29,7 @@ const TaskDetails = () => {
       body: JSON.stringify({
         id: params.id,
         accepted: !status,
-        acceptedBy: loginContext.profileName,
+        acceptedBy: status ? "" : loginContext.profileName,
       }),
     });
 

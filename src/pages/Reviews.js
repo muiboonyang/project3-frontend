@@ -1,17 +1,16 @@
-import React, { useState, useContext, useEffect } from "react";
-import LoginContext from "../context/login-context";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import styles from "./Reviews.module.css";
 
 const Reviews = () => {
-  const loginContext = useContext(LoginContext);
-  const currentUser = loginContext.profileName;
+  const params = useParams();
   const [userInfo, setUserInfo] = useState([]);
 
   //================
   // Fetch user data from API (by specific username)
   //================
 
-  const url = `https://sei33-community-app.herokuapp.com/users/${currentUser}`;
+  const url = `https://sei33-community-app.herokuapp.com/users/${params.username}`;
 
   const getUserInfo = async () => {
     try {
