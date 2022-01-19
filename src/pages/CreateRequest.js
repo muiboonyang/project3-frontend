@@ -78,14 +78,7 @@ const CreateRequest = () => {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        handleSubmit(e);
-        onFileUpload(e);
-      }}
-      className={styles.form}
-    >
-
+    <>
       <div className={styles.message}>
         {successMessage && showMessage ? (
           <Alert
@@ -201,7 +194,7 @@ const CreateRequest = () => {
             </Form.Group>
           </Row>
 
-          <button className={styles.btn} type="submit"}>
+          <button className={styles.btn} type="submit">
             Submit
           </button>
         </form>
