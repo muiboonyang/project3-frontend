@@ -194,9 +194,6 @@ const CreateRequest = () => {
                 as="textarea"
                 rows={3}
               />
-              <Form.Text className="text-muted">
-                Your feedback will not be shared with anyone else.
-              </Form.Text>
             </Form.Group>
           </Row>
 

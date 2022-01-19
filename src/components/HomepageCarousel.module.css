@@ -2,14 +2,13 @@
 
 img {
   height: 600px;
-  width: 100%;
 }
 
 .carousel {
   text-align: center;
   position: relative;
-  width: 100%;
   margin: auto;
+  width: 95%;
 }
 
 .carouselCaption {

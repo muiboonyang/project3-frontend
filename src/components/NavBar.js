@@ -41,16 +41,22 @@ const NavBar = () => {
       <div className={styles.navbar}>
         <Navbar>
           <Navbar.Brand>
-            <NavLink to="/" exact activeClassName={styles.active}>
-              <b>
-                <i className="fa fa-fw fa-tasks"></i> Task App
-              </b>
+            <NavLink
+              to="/"
+              exact
+              activeClassName={styles.active}
+              style={{ textShadow: "1px 0 grey" }}
+            >
+              <i className="fa fa-fw fa-tasks"></i> Community
             </NavLink>
           </Navbar.Brand>
 
           <Nav className="me-auto">
             <Dropdown>
-              <Dropdown.Toggle variant={"warning"}>
+              <Dropdown.Toggle
+                variant={"warning"}
+                style={{ fontWeight: "bold" }}
+              >
                 <i className="fa fa-fw fa-search"></i> Search Category
               </Dropdown.Toggle>
 
