@@ -1,5 +1,5 @@
 # Community App
-Made for SEI33 - Project 2
+Made for SEI33 - Project 3
 
 <h2>Introduction</h2>
 A simple community app made with React and Express.
