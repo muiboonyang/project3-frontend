@@ -20,7 +20,9 @@ const App = () => {
   const [profileName, setProfileName] = useState("");
 
   const handleLogin = async () => {
-    const res = await fetch("http://localhost:5001/sessions");
+    const res = await fetch(
+      "https://sei33-community-app.herokuapp.com/sessions"
+    );
     const data = await res.json();
     console.log(data);
   };

@@ -31,30 +31,36 @@ const CreateRequest = () => {
       const formData = new FormData();
       formData.append("image", selectedFile);
       console.log(formData);
-      await fetch(`http://localhost:5001/requests/${currentUser}`, {
-        method: "POST",
-        body: formData,
-      });
+      await fetch(
+        `https://sei33-community-app.herokuapp.com/requests/${currentUser}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch(`http://localhost:5001/requests/${currentUser}`, {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          type: type,
-          date: date,
-          title: title,
-          deadline: deadline,
-          comments: comments,
-        }),
-      });
+      const res = await fetch(
+        `https://sei33-community-app.herokuapp.com/requests/${currentUser}`,
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            type: type,
+            date: date,
+            title: title,
+            deadline: deadline,
+            comments: comments,
+          }),
+        }
+      );
 
       const data = await res.json();
       console.log(data);

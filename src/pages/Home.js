@@ -6,7 +6,7 @@ import HomepageCarousel from "../components/HomepageCarousel";
 const Home = () => {
   const seedTask = async () => {
     try {
-      await fetch(`http://localhost:5001/seedtask`);
+      await fetch(`https://sei33-community-app.herokuapp.com/seedtask`);
     } catch (err) {
       console.log(err);
     }
@@ -14,7 +14,7 @@ const Home = () => {
 
   const deleteTasks = async () => {
     try {
-      await fetch(`http://localhost:5001/delete/alltask`);
+      await fetch(`https://sei33-community-app.herokuapp.com/delete/alltask`);
     } catch (err) {
       console.log(err);
     }
@@ -22,7 +22,7 @@ const Home = () => {
 
   const seedUser = async () => {
     try {
-      await fetch(`http://localhost:5001/seeduser`);
+      await fetch(`https://sei33-community-app.herokuapp.com/seeduser`);
     } catch (err) {
       console.log(err);
     }
@@ -30,7 +30,7 @@ const Home = () => {
 
   const deleteUsers = async () => {
     try {
-      await fetch(`http://localhost:5001/delete/alluser`);
+      await fetch(`https://sei33-community-app.herokuapp.com/delete/alluser`);
     } catch (err) {
       console.log(err);
     }
