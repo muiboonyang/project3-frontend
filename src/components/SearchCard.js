@@ -21,10 +21,9 @@ const SearchCard = (props) => {
             alt={`${props.requests.title}`}
           />
           <div>
-            <h6>
-              {props.requests.name} ({capitalized})
-            </h6>
+            <h6>{props.requests.name}</h6>
             <h3>{props.requests.title}</h3>
+            <h6>({capitalized})</h6>
           </div>
         </div>
       </NavLink>
