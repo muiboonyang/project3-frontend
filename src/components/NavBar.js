@@ -1,4 +1,4 @@
-import { NavLink, Link , Redirect} from "react-router-dom";
+import { NavLink, Link, Redirect } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
@@ -39,16 +39,22 @@ const NavBar = () => {
       <div className={styles.navbar}>
         <Navbar>
           <Navbar.Brand>
-            <NavLink to="/" exact activeClassName={styles.active}>
-              <b>
-                <i className="fa fa-fw fa-tasks"></i> Task App
-              </b>
+            <NavLink
+              to="/"
+              exact
+              activeClassName={styles.active}
+              style={{ textShadow: "1px 0 grey" }}
+            >
+              <i className="fa fa-fw fa-tasks"></i> Community
             </NavLink>
           </Navbar.Brand>
 
           <Nav className="me-auto">
             <Dropdown>
-              <Dropdown.Toggle variant={"warning"}>
+              <Dropdown.Toggle
+                variant={"warning"}
+                style={{ fontWeight: "bold" }}
+              >
                 <i className="fa fa-fw fa-search"></i> Search Category
               </Dropdown.Toggle>
 
@@ -61,7 +67,7 @@ const NavBar = () => {
 
                 <Link to="/search/business">
                   <Dropdown.Item as="button" value="business">
-                    <i className="fa fa-fw fa-tint"></i> Business 
+                    <i className="fa fa-fw fa-tint"></i> Business
                   </Dropdown.Item>
                 </Link>
 

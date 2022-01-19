@@ -8,11 +8,9 @@
 }
 
 body {
-  /* margin: 0 50px; */
-  background: linear-gradient(to bottom, rgb(53, 53, 53), rgb(10, 10, 10));
-  color: white;
+  background-color: rgb(246 245 245);
+  color: rgb(85 85 85);
   font-family: "Charlotte";
-  background-attachment: fixed;
 }
 
 /* Add responsiveness - will automatically display the navbar vertically instead of horizontally on screens less than 500 pixels */

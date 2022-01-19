@@ -29,11 +29,12 @@ const Reviews = () => {
 
   return (
     <div className={styles.reviewsContainer}>
+      <h3>Reviews</h3>
       {userInfo.reviews
         ? userInfo.reviews.map((review) => {
             return (
-              <div className={styles.reviewsContainer}>
-                <h3>{review.review}</h3>
+              <div className={styles.individualReview}>
+                <h5>{review.review}</h5>
                 <div>
                   <i className="fa fa-fw fa-user"></i>
                   <h6>{review.reviewer}</h6>
