@@ -156,6 +156,7 @@ const CreateRequest = () => {
             <Form.Group as={Col} className="mb-3" controlId="formTitle">
               <Form.Label>Title</Form.Label>
               <Form.Control
+                maxLength={30}
                 name="title"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
