@@ -33,6 +33,7 @@ const CreateRequest = () => {
       console.log(formData);
       await fetch(`http://localhost:5001/requests/${currentUser}`, {
         method: "POST",
+        mode: "cors",
         body: formData,
       });
     }
