@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
@@ -9,8 +9,10 @@ import styles from "./NavBar.module.css";
 
 const NavBar = () => {
   const loginContext = useContext(LoginContext);
-  const [message, setMessage] = useState("");
-  const [show, setShow] = useState("");
+
+  const [successMessage, setSuccessMessage] = useState("");
+  const [failureMessage, setFailureMessage] = useState("");
+  const [showMessage, setShowMessage] = useState(false);
 
   const handleLogout = async (e) => {
     e.preventDefault();
@@ -19,12 +21,13 @@ const NavBar = () => {
       await res.json();
 
       if (res.status === 200) {
-        setMessage("Log out successful!");
+        setSuccessMessage("Log out successful!");
         loginContext.setLoggedIn(false);
         loginContext.setProfileName("");
-        setShow(true);
+        setShowMessage(true);
       } else {
-        setMessage("Log out unsuccessful!");
+        setFailureMessage("Log out unsuccessful!");
+        setShowMessage(true);
       }
     } catch (err) {
       console.log(err);
@@ -126,9 +129,25 @@ const NavBar = () => {
       </div>
 
       <div className={styles.message}>
-        {message && show ? (
-          <Alert variant="success" onClose={() => setShow(false)} dismissible>
-            {message}
+        {successMessage && showMessage ? (
+          <>
+            <Redirect to="/login" />
+            <Alert
+              variant="success"
+              onClose={() => setShowMessage(false)}
+              dismissible
+            >
+              {successMessage}
+            </Alert>
+          </>
+        ) : null}
+        {failureMessage && showMessage ? (
+          <Alert
+            variant="danger"
+            onClose={() => setShowMessage(false)}
+            dismissible
+          >
+            {failureMessage}
           </Alert>
         ) : null}
       </div>
