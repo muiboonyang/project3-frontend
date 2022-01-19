@@ -32,6 +32,11 @@
   transition: background-color 0.3s;
 }
 
+.login {
+  background: none;
+  color: black;
+}
+
 .create:hover {
   background-color: rgb(67, 172, 173);
   border: 1px solid rgb(67, 172, 173);

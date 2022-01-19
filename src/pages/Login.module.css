@@ -36,6 +36,11 @@
   transition: background-color 0.3s;
 }
 
+.create {
+  background: none;
+  color: black;
+}
+
 .create:hover,
 .submit:hover {
   background-color: rgb(67, 172, 173);
