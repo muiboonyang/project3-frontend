@@ -57,6 +57,7 @@
 
 .detailsContainer img {
   width: 50%;
+  height: auto;
 }
 
 .details {

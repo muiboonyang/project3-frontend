@@ -38,7 +38,6 @@ const Profile = () => {
   // Update current user
   //================
 
-  const [username, setUsername] = useState(userInfo.username);
   const [password, setPassword] = useState("");
   const [name, setName] = useState(userInfo.name);
   const [email, setEmail] = useState(userInfo.email);
@@ -63,7 +62,6 @@ const Profile = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            username: username,
             password: password,
             name: name,
             email: email,
@@ -81,7 +79,6 @@ const Profile = () => {
       if (res.status === 200) {
         setSuccessMessage("Account updated!");
         setShowMessage(true);
-        setUsername("");
         setPassword("");
         setName("");
         setEmail("");
@@ -132,9 +129,7 @@ const Profile = () => {
             <Form.Control
               type="text"
               name="username"
-              value={username}
-              placeholder={userInfo.username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={userInfo.username}
             />
           </Form.Group>
 
@@ -146,6 +141,7 @@ const Profile = () => {
               value={password}
               placeholder="Enter new password"
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </Form.Group>
 
