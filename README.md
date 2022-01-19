@@ -3,7 +3,7 @@ Made for SEI33 - Project 3
 
 <h2>Introduction</h2>
 A simple community app made with React and Express.
-<br><a href="" target="_blank">Try it out here!</a>
+<br><a href="https://quirky-meninsky-175d63.netlify.app/" target="_blank">Try it out here!</a>
 
 <h2>App Features</h2>
 
