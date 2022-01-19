@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { Redirect } from "react-router-dom";
 import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -85,7 +86,7 @@ const Profile = () => {
         setAddress("");
         setUnit("");
         setZipcode("");
-        loginContext.setLoggedIn(false);
+        // loginContext.setLoggedIn(false);
       } else {
         setFailureMessage("Account not updated!");
         setShowMessage(true);
@@ -99,13 +100,9 @@ const Profile = () => {
     <>
       <div className={styles.message}>
         {successMessage && showMessage ? (
-          <Alert
-            variant="success"
-            onClose={() => setShowMessage(false)}
-            dismissible
-          >
-            {successMessage}
-          </Alert>
+          <>
+            <Redirect to="/" />
+          </>
         ) : null}
         {failureMessage && showMessage ? (
           <Alert

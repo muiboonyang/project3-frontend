@@ -4,6 +4,7 @@ import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import styles from "./Login.module.css";
+import { Redirect } from "react-router-dom";
 
 const Login = () => {
   const loginContext = useContext(LoginContext);
@@ -51,7 +52,9 @@ const Login = () => {
   return (
     <div className={styles.container}>
       <div className={styles.message}>
-        {successMessage && showMessage ? <Redirect to="/"></Redirect> : null}
+        {successMessage ? (
+            <Redirect to="/" />
+        ) : null}
         {failureMessage && showMessage ? (
           <Alert
             variant="danger"

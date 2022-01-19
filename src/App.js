@@ -13,6 +13,7 @@ import MyTasks from "./pages/MyTasks";
 import Login from "./pages/Login";
 import CreateAccount from "./pages/CreateAccount";
 import Profile from "./pages/Profile";
+import Reviews from "./pages/Reviews";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -42,6 +43,7 @@ const App = () => {
           <Route path="/register" exact component={CreateAccount} />
           <Route path="/search/:type/:id" exact component={TaskDetails} />
           <Route path="/login" exact component={Login} />
+          <Route path="/:username/reviews" exact component={Reviews} />
 
           {loggedIn ? (
             <Switch>

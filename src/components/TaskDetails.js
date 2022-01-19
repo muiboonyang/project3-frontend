@@ -118,7 +118,9 @@ const TaskDetails = () => {
           </div>
           <div className={styles.rightColumn}>
             <div className={styles.contactContainer}>
-              <p> {taskDetails.name}</p>
+              <NavLink to={`/${taskDetails.username}/reviews`}>
+                <p> {taskDetails.name}</p>
+              </NavLink>
               <a href={`mailto:${taskDetails.email}`}>
                 <div>Chat</div>
               </a>
