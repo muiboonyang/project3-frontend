@@ -7,9 +7,8 @@
   overflow: visible;
   padding: 15px;
   margin-bottom: 10px;
-  background-image: url("https://cdn.vox-cdn.com/thumbor/VcMfVaDXYqBzbPSs8LU0vKUCdDU=/0x0:3000x2000/1200x0/filters:focal(0x0:3000x2000):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/19832394/House_Calls_Bainbridge_Au_NY_bookshelf.jpg");
+  background-color: rgb(246 245 245);
   font-family: "Montserrat", sans-serif;
-  box-shadow: 0 2px 10px darkgray;
 }
 
 /* Navbar links */
