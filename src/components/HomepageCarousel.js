@@ -14,7 +14,8 @@ const HomepageCarousel = () => {
               fade="true"
               indicators="false"
               className="d-block w-100"
-              src="https://images.pexels.com/photos/4474005/pexels-photo-4474005.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              src="https://picsum.photos/id/504/1920/1080
+              "
               alt="Seek Help"
             />
 
@@ -37,7 +38,8 @@ const HomepageCarousel = () => {
               fade="true"
               indicators="false"
               className="d-block w-100"
-              src="https://images.pexels.com/photos/4108715/pexels-photo-4108715.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              src="https://picsum.photos/id/513/1920/1080
+              "
               alt="Business"
             />
 
@@ -60,7 +62,8 @@ const HomepageCarousel = () => {
               fade="true"
               indicators="false"
               className="d-block w-100"
-              src="https://images.pexels.com/photos/9756161/pexels-photo-9756161.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              src="https://picsum.photos/id/304/1920/1080
+              "
               alt="Lifestyle"
             />
             <Carousel.Caption className={styles.carouselCaption}>
@@ -81,7 +84,8 @@ const HomepageCarousel = () => {
               fade="true"
               indicators="false"
               className="d-block w-100"
-              src="https://images.pexels.com/photos/3687999/pexels-photo-3687999.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+              src="https://picsum.photos/id/284/1920/1080
+              "
               alt="Home Services"
             />
             <Carousel.Caption className={styles.carouselCaption}>
