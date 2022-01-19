@@ -13,14 +13,14 @@ const TaskDetails = () => {
 
   const fetchTaskDetails = async () => {
     const res = await fetch(
-      `http://localhost:5001/search/${params.type}/${params.id}`
+      `https://sei33-community-app.herokuapp.com/search/${params.type}/${params.id}`
     );
     const data = await res.json();
     setTaskDetails(data);
   };
 
   const updateAcceptance = async () => {
-    const res = await fetch("http://localhost:5001/tasks", {
+    const res = await fetch("https://sei33-community-app.herokuapp.com/tasks", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -105,7 +105,7 @@ const TaskDetails = () => {
               src={
                 taskDetails.image.startsWith("http")
                   ? taskDetails.image
-                  : `http://localhost:5001/${taskDetails.image}`
+                  : `https://sei33-community-app.herokuapp.com/${taskDetails.image}`
               }
               alt={`${taskDetails.title}`}
             />

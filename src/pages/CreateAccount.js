@@ -24,23 +24,26 @@ const CreateAccount = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5001/users/new", {
-        method: "POST",
-        mode: "cors",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          password: password,
-          name: name,
-          email: email,
-          contact: contact,
-          address: address,
-          unit: unit,
-          zipcode: zipcode,
-        }),
-      });
+      const res = await fetch(
+        "https://sei33-community-app.herokuapp.com/users/new",
+        {
+          method: "POST",
+          mode: "cors",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            password: password,
+            name: name,
+            email: email,
+            contact: contact,
+            address: address,
+            unit: unit,
+            zipcode: zipcode,
+          }),
+        }
+      );
 
       const data = await res.json();
       console.log(data);

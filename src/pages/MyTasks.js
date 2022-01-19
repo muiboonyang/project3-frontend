@@ -11,24 +11,29 @@ const Tasks = () => {
   const loginContext = useContext(LoginContext);
 
   const fetchAllTasks = async () => {
-    const res = await fetch("http://localhost:5001/search/all");
+    const res = await fetch(
+      "https://sei33-community-app.herokuapp.com/search/all"
+    );
     const data = await res.json();
     setAllTasks(data);
     setAllStatuses(data);
   };
 
   const completeTask = async (identifier, status, index) => {
-    const res = await fetch("http://localhost:5001/tasks/complete", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: identifier,
-        completed: true,
-      }),
-    });
+    const res = await fetch(
+      "https://sei33-community-app.herokuapp.com/tasks/complete",
+      {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: identifier,
+          completed: true,
+        }),
+      }
+    );
 
     const data = await res.json();
     console.log(data);

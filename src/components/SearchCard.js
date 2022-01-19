@@ -16,7 +16,7 @@ const SearchCard = (props) => {
             src={
               props.requests.image.startsWith("http")
                 ? props.requests.image
-                : `http://localhost:5001/${props.requests.image}`
+                : `https://sei33-community-app.herokuapp.com/${props.requests.image}`
             }
             alt={`${props.requests.title}`}
           />

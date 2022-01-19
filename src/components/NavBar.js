@@ -1,4 +1,4 @@
-import { NavLink, Link , Redirect} from "react-router-dom";
+import { NavLink, Link, Redirect } from "react-router-dom";
 import React, { useState, useContext } from "react";
 import LoginContext from "../context/login-context";
 import Nav from "react-bootstrap/Nav";
@@ -17,7 +17,9 @@ const NavBar = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5001/sessions/logout");
+      const res = await fetch(
+        "https://sei33-community-app.herokuapp.com/sessions/logout"
+      );
       await res.json();
 
       if (res.status === 200) {
@@ -61,7 +63,7 @@ const NavBar = () => {
 
                 <Link to="/search/business">
                   <Dropdown.Item as="button" value="business">
-                    <i className="fa fa-fw fa-tint"></i> Business 
+                    <i className="fa fa-fw fa-tint"></i> Business
                   </Dropdown.Item>
                 </Link>
 

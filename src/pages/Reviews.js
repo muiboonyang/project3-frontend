@@ -11,7 +11,7 @@ const Reviews = () => {
   // Fetch user data from API (by specific username)
   //================
 
-  const url = `http://localhost:5001/users/${currentUser}`;
+  const url = `https://sei33-community-app.herokuapp.com/users/${currentUser}`;
 
   const getUserInfo = async () => {
     try {

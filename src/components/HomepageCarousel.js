@@ -51,7 +51,6 @@ const HomepageCarousel = () => {
               </p>
             </Carousel.Caption>
           </NavLink>
-
         </Carousel.Item>
 
         <Carousel.Item interval={5000}>
