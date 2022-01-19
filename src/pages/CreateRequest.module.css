@@ -2,3 +2,8 @@
   font-size: 1.2em;
   text-align: center;
 }
+
+.createRequest {
+  margin: auto;
+  width: 800px;
+}
