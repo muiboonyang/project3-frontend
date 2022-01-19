@@ -72,7 +72,6 @@ const CreateRequest = () => {
       } else {
         setFailureMessage("Request creation unsuccessful!");
         setShowMessage(true);
-
       }
     } catch (err) {
       console.log(err);
@@ -80,12 +79,7 @@ const CreateRequest = () => {
   };
 
   return (
-    <form
-      onSubmit={(e) => {
-        handleSubmit(e);
-        onFileUpload(e);
-      }}
-    >
+    <>
       <div className={styles.message}>
         {successMessage && showMessage ? (
           <Alert
@@ -109,94 +103,106 @@ const CreateRequest = () => {
 
       <br />
 
-      <Row className="mb-3">
-        <Form.Group as={Col} className="mb-3" controlId="formIssueType">
-          <Form.Label>Task type</Form.Label>
-          <Form.Select
-            name="type"
-            value={type}
-            onChange={(e) => setType(e.target.value)}
-            required
-          >
-            <option value="" hidden>
-              Select task type...
-            </option>
-            <option name="plumbing" value="plumbing">
-              Plumbing
-            </option>
-            <option name="cleaning" value="cleaning">
-              Cleaning
-            </option>
-            <option name="grocery" value="grocery">
-              Grocery
-            </option>
-          </Form.Select>
-        </Form.Group>
+      <div className={styles.createRequest}>
+        <h3>Create Request</h3>
+        <br />
 
-        <Form.Group as={Col} className="mb-3" controlId="formDate">
-          <Form.Label>Date</Form.Label>
-          <Form.Control
-            type="date"
-            name="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            required
-          />
-        </Form.Group>
-      </Row>
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e);
+            onFileUpload(e);
+          }}
+        >
+          <Row className="mb-3">
+            <Form.Group as={Col} className="mb-3" controlId="formIssueType">
+              <Form.Label>Task type</Form.Label>
+              <Form.Select
+                name="type"
+                value={type}
+                onChange={(e) => setType(e.target.value)}
+                required
+              >
+                <option value="" hidden>
+                  Select task type...
+                </option>
+                <option name="plumbing" value="plumbing">
+                  Plumbing
+                </option>
+                <option name="cleaning" value="cleaning">
+                  Cleaning
+                </option>
+                <option name="grocery" value="grocery">
+                  Grocery
+                </option>
+              </Form.Select>
+            </Form.Group>
 
-      <Row>
-        <Form.Group as={Col} className="mb-3" controlId="formTitle">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            name="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            placeholder="Enter title"
-            required
-          />
-        </Form.Group>
+            <Form.Group as={Col} className="mb-3" controlId="formDate">
+              <Form.Label>Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="date"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+                required
+              />
+            </Form.Group>
+          </Row>
 
-        <Form.Group as={Col} className="mb-3" controlId="formDeadline">
-          <Form.Label>Deadline</Form.Label>
-          <Form.Control
-            type="date"
-            name="deadline"
-            value={deadline}
-            onChange={(e) => setDeadline(e.target.value)}
-            required
-          />
-        </Form.Group>
-      </Row>
+          <Row>
+            <Form.Group as={Col} className="mb-3" controlId="formTitle">
+              <Form.Label>Title</Form.Label>
+              <Form.Control
+                name="title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                placeholder="Enter title"
+                required
+              />
+            </Form.Group>
 
-      <Row>
-        <Form.Group className="mb-3" controlId="formText">
-          <Form.Label>Upload file</Form.Label>
-          <br />
-          <input type="file" onChange={onFileChange} />
-        </Form.Group>
-      </Row>
+            <Form.Group as={Col} className="mb-3" controlId="formDeadline">
+              <Form.Label>Deadline</Form.Label>
+              <Form.Control
+                type="date"
+                name="deadline"
+                value={deadline}
+                onChange={(e) => setDeadline(e.target.value)}
+                required
+              />
+            </Form.Group>
+          </Row>
 
-      <Row>
-        <Form.Group className="mb-3" controlId="formText">
-          <Form.Label>Comments</Form.Label>
-          <Form.Control
-            name="comments"
-            value={comments}
-            onChange={(e) => setComments(e.target.value)}
-            as="textarea"
-            rows={3}
-          />
-          <Form.Text className="text-muted">
-            Your feedback will not be shared with anyone else.
-          </Form.Text>
-        </Form.Group>
-      </Row>
+          <Row>
+            <Form.Group className="mb-3" controlId="formText">
+              <Form.Label>Upload file</Form.Label>
+              <br />
+              <input type="file" onChange={onFileChange} />
+            </Form.Group>
+          </Row>
 
-      <Button variant="dark" type="submit" style={{ float: "right" }}>
-        Submit
-      </Button>
-    </form>
+          <Row>
+            <Form.Group className="mb-3" controlId="formText">
+              <Form.Label>Comments</Form.Label>
+              <Form.Control
+                name="comments"
+                value={comments}
+                onChange={(e) => setComments(e.target.value)}
+                as="textarea"
+                rows={3}
+              />
+              <Form.Text className="text-muted">
+                Your feedback will not be shared with anyone else.
+              </Form.Text>
+            </Form.Group>
+          </Row>
+
+          <Button variant="dark" type="submit" style={{ float: "right" }}>
+            Submit
+          </Button>
+        </form>
+      </div>
+    </>
   );
 };
 
