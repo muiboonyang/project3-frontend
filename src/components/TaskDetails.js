@@ -118,7 +118,9 @@ const TaskDetails = () => {
           </div>
           <div className={styles.rightColumn}>
             <div className={styles.contactContainer}>
-              <p> {taskDetails.name}</p>
+              <NavLink to={`/${taskDetails.username}/reviews`}>
+                <p> {taskDetails.name}</p>
+              </NavLink>
               <a href={`mailto:${taskDetails.email}`}>
                 <div>Chat</div>
               </a>
@@ -148,6 +150,7 @@ const TaskDetails = () => {
 
             {location ? (
               <img
+                className="map"
                 src={`https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=night&postal=${taskDetails.zipcode}&zoom=16&height=200&width=200&points=[${location.LATITUDE}, ${location.LONGITUDE},"255,255,255"]&color=&fillColor=`}
                 alt=""
               ></img>
