@@ -7,27 +7,27 @@
   overflow: visible;
   padding: 15px;
   margin-bottom: 10px;
-  background-color: rgb(32, 32, 32);
-  /* box-shadow: 0 5px 10px rgb(105, 105, 105); */
+  background-color: rgb(246 245 245);
+  font-family: "Montserrat", sans-serif;
 }
 
 /* Navbar links */
 .navbar a {
+  color: rgb(85 85 85);
   float: left;
   text-align: center;
-  color: #b2afac;
   text-decoration: none;
   font-size: 17px;
-  padding-right: 5px;
-  font-weight: 400;
+  margin-left: 15px;
+  margin-right: 15px;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.1rem;
 }
 
 /* Navbar links on mouse-over */
 .navbar a:hover {
-  border-bottom: 2px solid rgb(197, 195, 84);
-  color: white;
+  border-bottom: 2px solid rgb(67, 172, 173);
 }
 
 .message {
@@ -36,8 +36,7 @@
 }
 
 .active {
-  color: white !important;
-  border-bottom: 2px solid rgb(197, 195, 84);
+  border-bottom: 2px solid rgb(67, 172, 173);
 }
 
 .dropdown {
@@ -52,7 +51,8 @@
 }
 
 .dropdown a:hover {
-  background-color: rgb(197, 195, 84);
+  background-color: rgb(67, 172, 173);
+  border: none;
 }
 
 .dropdown button {
@@ -66,5 +66,5 @@
 }
 
 .dropdown button:active {
-  background-color: rgb(197, 195, 84) !important;
+  background-color: rgb(67, 172, 173) !important;
 }

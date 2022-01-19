@@ -38,8 +38,9 @@ const Home = () => {
 
   return (
     <>
+      <br />
       <div className="carousel">
-        <HomepageCarousel></HomepageCarousel>
+        <HomepageCarousel />
       </div>
 
       <div className={styles.buttons}>
