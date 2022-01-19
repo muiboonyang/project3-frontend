@@ -2,34 +2,69 @@
 
 .navbar {
   width: 100%;
-  background-color: #222529;
   position: relative;
   height: auto;
   overflow: visible;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: rgb(32, 32, 32);
+  /* box-shadow: 0 5px 10px rgb(105, 105, 105); */
 }
 
 /* Navbar links */
 .navbar a {
   float: left;
   text-align: center;
-  /* padding: 12px; */
-  padding: 6px 12px 6px 12px;
-  color: white;
+  color: #b2afac;
   text-decoration: none;
   font-size: 17px;
+  padding-right: 5px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
 }
 
 /* Navbar links on mouse-over */
 .navbar a:hover {
-  background-color: #000;
-}
-
-/* Current/active navbar link */
-.navbar active {
-  background-color: #000000;
+  border-bottom: 2px solid rgb(197, 195, 84);
+  color: white;
 }
 
 .message {
   font-size: 1.2em;
   text-align: center;
+}
+
+.active {
+  color: white !important;
+  border-bottom: 2px solid rgb(197, 195, 84);
+}
+
+.dropdown {
+  background-color: rgb(85, 85, 85);
+  padding: 0;
+}
+
+.dropdown a {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.dropdown a:hover {
+  background-color: rgb(197, 195, 84);
+}
+
+.dropdown button {
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  font-size: 15px;
+}
+
+.loggedInContainer a {
+  margin-right: 15px;
+}
+
+.dropdown button:active {
+  background-color: rgb(197, 195, 84) !important;
 }

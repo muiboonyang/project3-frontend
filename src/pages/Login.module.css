@@ -1,5 +1,12 @@
 /* Formatting for login page */
 
+.container {
+  margin-top: 10px;
+  border-radius: 15px;
+  font-family: "Charlotte";
+  text-transform: uppercase;
+}
+
 .message {
   font-size: 1.2em;
   text-align: center;
@@ -8,4 +15,22 @@
 .login {
   margin: auto;
   width: 500px;
+}
+
+.create,
+.submit {
+  background-color: rgba(27, 27, 27, 0);
+  border: 1px solid rgb(197, 195, 84);
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "Charlotte";
+  text-transform: uppercase;
+  color: white;
+}
+
+.create:hover,
+.submit:hover {
+  background-color: rgb(197, 195, 84);
+  color: black;
 }

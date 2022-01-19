@@ -3,6 +3,8 @@
   border: 0.5px solid rgb(201, 201, 201);
   transition: box-shadow 0.5s;
   margin: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 5px 5px 0 0;
 }
 
 .container a {

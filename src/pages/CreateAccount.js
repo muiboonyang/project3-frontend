@@ -1,6 +1,6 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
@@ -194,9 +194,9 @@ const CreateAccount = () => {
           </Row>
 
           <div className="d-grid gap-2">
-            <Button variant="dark" type="submit" size="lg">
+            <button className={styles.create} type="submit">
               Submit
-            </Button>
+            </button>
           </div>
         </form>
 
@@ -204,14 +204,11 @@ const CreateAccount = () => {
 
         <Form>
           <div className="d-grid gap-2">
-            <Button
-              variant="outline-dark"
-              type="submit"
-              size="lg"
-              href="/login"
-            >
-              Already have an account? Click here to log in
-            </Button>
+            <NavLink to="/login">
+              <button className={styles.login} type="submit">
+                Already have an account? Click here to log in
+              </button>
+            </NavLink>
           </div>
         </Form>
 

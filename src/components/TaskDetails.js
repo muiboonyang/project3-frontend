@@ -148,7 +148,7 @@ const TaskDetails = () => {
 
             {location ? (
               <img
-                src={`https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=night&postal=${taskDetails.zipcode}&zoom=16&height=200&width=200&points=[${location.LATITUDE}, ${location.LONGITUDE},"255,255,255"]&color=&fillColor=`}
+                src={`https://developers.onemap.sg/commonapi/staticmap/getStaticImage?layerchosen=default&postal=${taskDetails.zipcode}&zoom=16&height=200&width=200&points=[${location.LATITUDE}, ${location.LONGITUDE},"204,100,100"]&color=&fillColor=`}
                 alt=""
               ></img>
             ) : (

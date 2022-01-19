@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
+import { Redirect, NavLink } from "react-router-dom";
 import LoginContext from "../context/login-context";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
 import styles from "./Login.module.css";
 
@@ -49,17 +49,9 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.message}>
-        {successMessage && showMessage ? (
-          <Alert
-            variant="success"
-            onClose={() => setShowMessage(false)}
-            dismissible
-          >
-            {successMessage}
-          </Alert>
-        ) : null}
+        {successMessage && showMessage ? <Redirect to="/"></Redirect> : null}
         {failureMessage && showMessage ? (
           <Alert
             variant="danger"
@@ -103,9 +95,7 @@ const Login = () => {
           </Form.Group>
 
           <div className="d-grid gap-2">
-            <Button variant="dark" type="submit" size="lg">
-              Submit
-            </Button>
+            <button className={styles.submit}>Submit</button>
           </div>
         </form>
 
@@ -113,20 +103,15 @@ const Login = () => {
 
         <Form>
           <div className="d-grid gap-2">
-            <Button
-              variant="outline-dark"
-              type="submit"
-              size="lg"
-              href="/register"
-            >
-              Create Account
-            </Button>
+            <NavLink to="/register">
+              <button className={styles.create}>Create Account</button>
+            </NavLink>
           </div>
         </Form>
 
         <br />
       </div>
-    </>
+    </div>
   );
 };
 

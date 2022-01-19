@@ -1,6 +1,9 @@
 .profile {
   margin: auto;
   width: 700px;
+  font-family: "Charlotte";
+  text-transform: uppercase;
+  color: rgb(190, 190, 190);
 }
 
 .reviewsContainer {
@@ -18,4 +21,20 @@
 
 .reviewsContainer h6 {
   margin-left: 5px;
+}
+
+.btn {
+  background-color: rgba(27, 27, 27, 0);
+  border: 1px solid rgb(197, 195, 84);
+  float: right;
+  padding: 10px;
+  border-radius: 5px;
+  font-family: "Charlotte";
+  text-transform: uppercase;
+  color: white;
+}
+
+.btn:hover {
+  background-color: rgb(197, 195, 84);
+  color: black;
 }

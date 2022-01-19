@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Alert from "react-bootstrap/Alert";
@@ -68,11 +67,10 @@ const CreateRequest = () => {
         setTitle("");
         setDeadline("");
         setComments("");
-        setSelectedFile("");
+        setSelectedFile(null);
       } else {
         setFailureMessage("Request creation unsuccessful!");
         setShowMessage(true);
-
       }
     } catch (err) {
       console.log(err);
@@ -85,6 +83,7 @@ const CreateRequest = () => {
         handleSubmit(e);
         onFileUpload(e);
       }}
+      className={styles.form}
     >
       <div className={styles.message}>
         {successMessage && showMessage ? (
@@ -107,8 +106,6 @@ const CreateRequest = () => {
         ) : null}
       </div>
 
-      <br />
-
       <Row className="mb-3">
         <Form.Group as={Col} className="mb-3" controlId="formIssueType">
           <Form.Label>Task type</Form.Label>
@@ -121,14 +118,14 @@ const CreateRequest = () => {
             <option value="" hidden>
               Select task type...
             </option>
-            <option name="plumbing" value="plumbing">
-              Plumbing
+            <option name="business" value="business">
+              Business
             </option>
-            <option name="cleaning" value="cleaning">
-              Cleaning
+            <option name="lifestyle" value="lifestyle">
+              Lifestyle
             </option>
-            <option name="grocery" value="grocery">
-              Grocery
+            <option name="homeservices" value="homeservices">
+              Home Services
             </option>
           </Form.Select>
         </Form.Group>
@@ -187,15 +184,12 @@ const CreateRequest = () => {
             as="textarea"
             rows={3}
           />
-          <Form.Text className="text-muted">
-            Your feedback will not be shared with anyone else.
-          </Form.Text>
         </Form.Group>
       </Row>
 
-      <Button variant="dark" type="submit" style={{ float: "right" }}>
+      <button className={styles.btn} type="submit">
         Submit
-      </Button>
+      </button>
     </form>
   );
 };
