@@ -25,7 +25,7 @@ const HomepageCarousel = () => {
                 Ask help from others{" "}
                 <i class="fa fa-handshake-o" aria-hidden="true"></i>
                 <br />
-                Click here to create an account!
+                Create an account to begin!
               </p>
             </Carousel.Caption>
           </NavLink>
@@ -44,12 +44,12 @@ const HomepageCarousel = () => {
             />
 
             <Carousel.Caption className={styles.carouselCaption}>
-              <h3>Business</h3>
+              <h3>Support Businesses</h3>
               <p>
                 Want to make someone's day?{" "}
                 <i class="fa fa-heart" aria-hidden="true"></i>
                 <br />
-                Click here to begin!
+                Click to begin!
               </p>
             </Carousel.Caption>
           </NavLink>
@@ -67,12 +67,12 @@ const HomepageCarousel = () => {
               alt="Lifestyle"
             />
             <Carousel.Caption className={styles.carouselCaption}>
-              <h3>Lifestyle</h3>
+              <h3>Lifestyle Tasks</h3>
               <p>
                 Want to make someone's day?{" "}
                 <i class="fa fa-heart" aria-hidden="true"></i>
                 <br />
-                Click here to begin!
+                Click to begin!
               </p>
             </Carousel.Caption>
           </NavLink>
@@ -94,7 +94,7 @@ const HomepageCarousel = () => {
                 Want to make someone's day?{" "}
                 <i class="fa fa-heart" aria-hidden="true"></i>
                 <br />
-                Click here to begin!
+                Click to begin!
               </p>
             </Carousel.Caption>
           </NavLink>

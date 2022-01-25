@@ -17,7 +17,9 @@ const NavBar = () => {
   const handleLogout = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:5001/sessions/logout");
+      const res = await fetch(
+        "https://sei33-community-app.herokuapp.com/sessions/logout"
+      );
       await res.json();
 
       if (res.status === 200) {

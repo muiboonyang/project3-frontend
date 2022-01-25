@@ -10,7 +10,7 @@ const MyTasksCard = (props) => {
 
   const handleSubmitReview = async () => {
     props.setReview(input.current.value);
-    await fetch("http://localhost:5001/addreview", {
+    await fetch("https://sei33-community-app.herokuapp.com/addreview", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const MyTasksCard = (props) => {
             src={
               props.task.image.startsWith("http")
                 ? props.task.image
-                : `http://localhost:5001/${props.task.image}`
+                : `https://sei33-community-app.herokuapp.com/${props.task.image}`
             }
             alt={`${props.task.title}`}
           />

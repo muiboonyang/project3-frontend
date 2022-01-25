@@ -12,7 +12,7 @@ const SearchResults = () => {
   // Fetch requests data from API (by specific type)
   //================
 
-  const url = `http://localhost:5001/search/${params.type}`;
+  const url = `https://sei33-community-app.herokuapp.com/search/${params.type}`;
 
   const fetchRequests = async () => {
     try {
