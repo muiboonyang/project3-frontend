@@ -25,21 +25,17 @@ const Tasks = () => {
 
   const completeTask = async (identifier, index) => {
     try {
-      const res = await fetch(
-        "https://sei33-community-app.herokuapp.com/tasks/complete",
-        {
-          method: "POST",
-          mode: "cors",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: identifier,
-            completed: true,
-          }),
-        }
-      );
-      const data = await res.json();
+      await fetch("https://sei33-community-app.herokuapp.com/tasks/complete", {
+        method: "POST",
+        mode: "cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: identifier,
+          completed: true,
+        }),
+      });
 
       allTasks[index].completed = true;
       setAllTasks([...allTasks]);
@@ -50,22 +46,18 @@ const Tasks = () => {
 
   const handleSubmitReview = async (identifier, input, acceptedBy, index) => {
     try {
-      const res = await fetch(
-        "https://sei33-community-app.herokuapp.com/addreview",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            id: identifier,
-            review: input,
-            reviewer: loginContext.profileName,
-            acceptedBy: acceptedBy,
-          }),
-        }
-      );
-      const data = await res.json();
+      await fetch("https://sei33-community-app.herokuapp.com/addreview", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: identifier,
+          review: input,
+          reviewer: loginContext.profileName,
+          acceptedBy: acceptedBy,
+        }),
+      });
 
       allTasks[index].review = input;
       setAllTasks([...allTasks]);
@@ -76,6 +68,7 @@ const Tasks = () => {
 
   useEffect(() => {
     fetchAllTasks();
+    // eslint-disable-next-line
   }, []);
 
   return (
