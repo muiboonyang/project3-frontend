@@ -6,23 +6,26 @@ import styles from "./MyTasks.module.css";
 
 const Tasks = () => {
   const [allTasks, setAllTasks] = useState([]);
-  const [allStatuses, setAllStatuses] = useState([]);
-  const [review, setReview] = useState("");
   const loginContext = useContext(LoginContext);
 
   const fetchAllTasks = async () => {
-    const res = await fetch(
-      "https://sei33-community-app.herokuapp.com/search/all"
-    );
-    const data = await res.json();
-    setAllTasks(data);
-    setAllStatuses(data);
+    try {
+      const res = await fetch(
+        "https://sei33-community-app.herokuapp.com/search/all"
+      );
+      const data = await res.json();
+      const filteredData = data.filter((item) => {
+        return item.username === loginContext.profileName;
+      });
+      setAllTasks(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  const completeTask = async (identifier, status, index) => {
-    const res = await fetch(
-      "https://sei33-community-app.herokuapp.com/tasks/complete",
-      {
+  const completeTask = async (identifier, index) => {
+    try {
+      await fetch("https://sei33-community-app.herokuapp.com/tasks/complete", {
         method: "POST",
         mode: "cors",
         headers: {
@@ -32,20 +35,41 @@ const Tasks = () => {
           id: identifier,
           completed: true,
         }),
-      }
-    );
+      });
 
-    const data = await res.json();
-    console.log(data);
+      allTasks[index].completed = true;
+      setAllTasks([...allTasks]);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    const updatedStatus = allStatuses;
-    updatedStatus[index].completed = status;
-    setAllStatuses([...updatedStatus]);
+  const handleSubmitReview = async (identifier, input, acceptedBy, index) => {
+    try {
+      await fetch("https://sei33-community-app.herokuapp.com/addreview", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: identifier,
+          review: input,
+          reviewer: loginContext.profileName,
+          acceptedBy: acceptedBy,
+        }),
+      });
+
+      allTasks[index].review = input;
+      setAllTasks([...allTasks]);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
     fetchAllTasks();
-  }, [review]);
+    // eslint-disable-next-line
+  }, []);
 
   return (
     <div className={styles.main}>
@@ -56,13 +80,13 @@ const Tasks = () => {
 
         <div className={styles.container}>
           {allTasks.map((task, index) => {
-            return !task.completed &&
-              task.acceptedBy === loginContext.profileName ? (
+            return !task.completed ? (
               <div key={uuidv4()}>
                 <MyTasksCard
                   task={task}
-                  index={index}
-                  completeTask={completeTask}
+                  completeTask={() => {
+                    completeTask(task._id, index);
+                  }}
                 />
               </div>
             ) : (
@@ -75,8 +99,7 @@ const Tasks = () => {
 
         <div className={styles.container}>
           {allTasks.map((task) => {
-            return task.completed &&
-              task.acceptedBy === loginContext.profileName ? (
+            return task.completed ? (
               <div key={uuidv4()}>
                 <MyTasksCard task={task} />
               </div>
@@ -92,8 +115,7 @@ const Tasks = () => {
         <h4>Pending Acceptance</h4>
         <div className={styles.container}>
           {allTasks.map((task) => {
-            return task.username === loginContext.profileName &&
-              !task.accepted ? (
+            return !task.accepted ? (
               <div key={uuidv4()}>
                 <MyTasksCard task={task} />
               </div>
@@ -107,14 +129,13 @@ const Tasks = () => {
 
         <div className={styles.container}>
           {allTasks.map((task, index) => {
-            return task.username === loginContext.profileName &&
-              task.accepted &&
-              !task.completed ? (
+            return task.accepted && !task.completed ? (
               <div key={uuidv4()} className={styles.container}>
                 <MyTasksCard
                   task={task}
-                  index={index}
-                  completeTask={completeTask}
+                  completeTask={() => {
+                    completeTask(task._id, index);
+                  }}
                 />
               </div>
             ) : (
@@ -125,12 +146,15 @@ const Tasks = () => {
 
         <h4>Completed</h4>
         <div className={styles.container}>
-          {allTasks.map((task) => {
-            return task.username === loginContext.profileName &&
-              task.accepted &&
-              task.completed ? (
+          {allTasks.map((task, index) => {
+            return task.accepted && task.completed ? (
               <div key={uuidv4()}>
-                <MyTasksCard task={task} setReview={setReview} />
+                <MyTasksCard
+                  task={task}
+                  handleSubmitReview={(identifier, input, acceptedBy) => {
+                    handleSubmitReview(identifier, input, acceptedBy, index);
+                  }}
+                />
               </div>
             ) : (
               ""

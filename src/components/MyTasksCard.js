@@ -8,22 +8,6 @@ const MyTasksCard = (props) => {
   const input = useRef("");
   const loginContext = useContext(LoginContext);
 
-  const handleSubmitReview = async () => {
-    props.setReview(input.current.value);
-    await fetch("https://sei33-community-app.herokuapp.com/addreview", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: props.task._id,
-        review: input.current.value,
-        reviewer: props.task.username,
-        acceptedBy: props.task.acceptedBy,
-      }),
-    });
-  };
-
   return (
     <div className={styles.container}>
       <NavLink to={`search/${props.task.type}/${props.task._id}`}>
@@ -44,22 +28,14 @@ const MyTasksCard = (props) => {
       </NavLink>
       {props.task.accepted && !props.task.completed ? (
         <div className={styles.bottomContainer}>
-          <Button
-            variant="outline-dark"
-            onClick={() =>
-              props.completeTask(
-                props.task._id,
-                !props.task.completed,
-                props.index
-              )
-            }
-          >
+          <Button variant="outline-dark" onClick={() => props.completeTask()}>
             Complete
           </Button>
         </div>
       ) : (
         ""
       )}
+
       {props.task.completed &&
       props.task.username === loginContext.profileName ? (
         props.task.review ? (
@@ -72,7 +48,16 @@ const MyTasksCard = (props) => {
           <div className={styles.giveReviews}>
             <label htmlFor="reviews">Give a review!</label>
             <textarea id="reviews" ref={input}></textarea>
-            <Button variant="outline-danger" onClick={handleSubmitReview}>
+            <Button
+              variant="outline-danger"
+              onClick={() => {
+                props.handleSubmitReview(
+                  props.task._id,
+                  input.current.value,
+                  props.task.acceptedBy
+                );
+              }}
+            >
               Submit Review
             </Button>
           </div>
