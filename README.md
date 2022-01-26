@@ -5,7 +5,7 @@ Made for SEI33 - Project 3
 A simple community app made with React and Express.
 <br>This app is hosted on MongoDB Atlas, Netlify and Heroku
 <br>
-<br><a href="https://quirky-meninsky-175d63.netlify.app/" target="_blank">Try it out here!</a>
+<br><a href="https://the-community-app.netlify.app/" target="_blank">Try it out here!</a>
 
 <h2>App Features</h2>
 
