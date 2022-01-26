@@ -14,10 +14,7 @@ const Tasks = () => {
         "https://sei33-community-app.herokuapp.com/search/all"
       );
       const data = await res.json();
-      const filteredData = data.filter((item) => {
-        return item.username === loginContext.profileName;
-      });
-      setAllTasks(filteredData);
+      setAllTasks(data);
     } catch (err) {
       console.error(err);
     }
@@ -80,7 +77,8 @@ const Tasks = () => {
 
         <div className={styles.container}>
           {allTasks.map((task, index) => {
-            return !task.completed ? (
+            return !task.completed &&
+              task.acceptedBy === loginContext.profileName ? (
               <div key={uuidv4()}>
                 <MyTasksCard
                   task={task}
@@ -99,7 +97,8 @@ const Tasks = () => {
 
         <div className={styles.container}>
           {allTasks.map((task) => {
-            return task.completed ? (
+            return task.completed &&
+              task.acceptedBy === loginContext.profileName ? (
               <div key={uuidv4()}>
                 <MyTasksCard task={task} />
               </div>
@@ -115,7 +114,8 @@ const Tasks = () => {
         <h4>Pending Acceptance</h4>
         <div className={styles.container}>
           {allTasks.map((task) => {
-            return !task.accepted ? (
+            return task.username === loginContext.profileName &&
+              !task.accepted ? (
               <div key={uuidv4()}>
                 <MyTasksCard task={task} />
               </div>
@@ -129,7 +129,9 @@ const Tasks = () => {
 
         <div className={styles.container}>
           {allTasks.map((task, index) => {
-            return task.accepted && !task.completed ? (
+            return task.username === loginContext.profileName &&
+              task.accepted &&
+              !task.completed ? (
               <div key={uuidv4()} className={styles.container}>
                 <MyTasksCard
                   task={task}
@@ -147,7 +149,9 @@ const Tasks = () => {
         <h4>Completed</h4>
         <div className={styles.container}>
           {allTasks.map((task, index) => {
-            return task.accepted && task.completed ? (
+            return task.username === loginContext.profileName &&
+              task.accepted &&
+              task.completed ? (
               <div key={uuidv4()}>
                 <MyTasksCard
                   task={task}
